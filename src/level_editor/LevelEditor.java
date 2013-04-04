@@ -8,5 +8,8 @@ public class LevelEditor implements iLevelEditor {
         
     }
 
+    public void createSprite(){
+        
+    }
     
 }
