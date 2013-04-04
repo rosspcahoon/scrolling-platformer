@@ -23,8 +23,13 @@ public class PlayerCollisionHandler implements Visitor {
     }
 
     @Override
+    /**
+     * Here you would write how the player would respond when it collides 
+     * with a NonPlayableCharacter npc. Keep in mind that this is very abstract
+     * right now. In reality, it would interact with something like 
+     * Koopa koopa. 
+     */
     public void visit (NonPlayableCharacter npc) {
-        // TODO Auto-generated method stub
         
     }
 
