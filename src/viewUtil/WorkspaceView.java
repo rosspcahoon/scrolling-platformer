@@ -40,13 +40,17 @@ public abstract class WorkspaceView extends WindowView{
         myID = id; 
     }
 
-    public abstract void setRenderable (Renderable r);
+    public void setRenderable (Renderable r) {
+        myRenderable = r;
+    }
     
     /**
      * Get the ID for this component
      * @return the id of the component
      */
-    public abstract int getID ();
+    public int getID () {
+        return myID;
+    }
     
     /**
      * TODO - for use in history browsing

@@ -2,6 +2,7 @@ package level_editor;
 
 import java.awt.Container;
 import util.IWindow;
+import viewUtil.EasyGridFactory;
 import viewUtil.Renderable;
 import viewUtil.WorkspaceView;
 
@@ -11,6 +12,8 @@ import viewUtil.WorkspaceView;
  *
  */
 public class LETab extends WorkspaceView implements ILEView {
+    private LevelView myLevelView;
+    private EditorView myEditorView;
 
     public LETab (Container host) {
         super(host);
@@ -22,11 +25,6 @@ public class LETab extends WorkspaceView implements ILEView {
         super(id, host);
     }
 
-    @Override
-    public void setRenderable (Renderable r) {
-        // TODO Auto-generated method stub
-
-    }
 
     @Override
     public int getID () {
@@ -37,19 +35,21 @@ public class LETab extends WorkspaceView implements ILEView {
     @Override
     protected void initializeVariables () {
         // TODO Auto-generated method stub
-
+        myLevelView = new LevelView(this);
+        myEditorView = new EditorView(this);
     }
 
     @Override
     protected void addComponents () {
         // TODO Auto-generated method stub
-
+        EasyGridFactory.layoutVertical(this, myLevelView, myEditorView);
+        System.out.println("here");
     }
 
     @Override
     public void render (Renderable r) {
         // TODO Auto-generated method stub
-        
+        myLevelView.render(r);
     }
 
 }

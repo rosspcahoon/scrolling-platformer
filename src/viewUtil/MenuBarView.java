@@ -8,6 +8,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JSeparator;
 import javax.swing.Timer;
+import level_editor.LEditorActionLibrary;
 
 
 /**
@@ -20,6 +21,7 @@ public class MenuBarView extends JMenuBar {
     private static final int DEFAULT_DELAY = 100;
     private Window myWindow;
     private WindowActionLibrary myActionLibrary;
+    private LEditorActionLibrary myWSActionLibrary;
     private JMenu myFileMenu;
     private JMenu myPreferencesMenu;
     private JMenu myHelpMenu;
@@ -78,12 +80,12 @@ public class MenuBarView extends JMenuBar {
     private JMenu makePreferencesMenu() {
         JMenu result = new JMenu(Window.getResources().getString("PreferencesMenu"));
         result.setMnemonic(KeyEvent.VK_P);
-        result.add(myActionLibrary.new ChangeBackgroundAction());
+//        result.add(myActionLibrary.new ChangeBackgroundAction());
         result.add(myActionLibrary.new ToggleGridAction());
-        result.add(myActionLibrary.new ChangeTurtleAction());
-        result.add(new JSeparator());
-        result.add(myActionLibrary.new ChangePenColorAction());
-        result.add(myActionLibrary.new ChangePenPropertiesAction());
+//        result.add(myActionLibrary.new ChangeTurtleAction());
+//        result.add(new JSeparator());
+//        result.add(myActionLibrary.new ChangePenColorAction());
+//        result.add(myActionLibrary.new ChangePenPropertiesAction());
         result.setEnabled(false);
         myPreferencesMenu = result;
         return myPreferencesMenu;

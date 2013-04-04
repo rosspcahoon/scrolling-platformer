@@ -1,6 +1,6 @@
 package level_editor;
 
-public interface iLevelEditor {
+public interface ILevelEditor {
 
     public void processCommand();
     

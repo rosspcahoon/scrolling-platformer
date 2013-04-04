@@ -3,7 +3,7 @@ package level_editor;
 import util.IModel;
 import util.WorkspaceModel;
 
-public class LevelEditor implements iLevelEditor, IModel {
+public class LevelEditor implements ILevelEditor, IModel {
 
     public LevelEditor (String language) {
         // TODO Auto-generated constructor stub
