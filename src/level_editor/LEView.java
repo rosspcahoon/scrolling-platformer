@@ -1,11 +1,15 @@
 package level_editor;
 
-public class LEView implements iLEView {
+import javax.swing.JFrame;
+
+public class LEView extends JFrame implements iLEView {
 
     @Override
-    public void render () {
+    public void render (Renderable r) {
         // TODO Auto-generated method stub
         
     }
+    
+    
 
 }

@@ -2,6 +2,6 @@ package level_editor;
 
 public interface iLEView {
 
-    public void render();
+    public void render(Renderable r);
     
 }
