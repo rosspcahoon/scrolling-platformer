@@ -1,9 +1,9 @@
 package collision_handlers;
+import design_patterns.Visitor;
 import sprites.NonPlayableCharacter;
 import sprites.NonStaticEnviroPlaceHolder;
 import sprites.Player;
 import sprites.StaticEnviroPlaceHolder;
-import sprites.Visitor;
 
 /**
  * Here is a sample for how we want to handle collisions. Each sprite will 
