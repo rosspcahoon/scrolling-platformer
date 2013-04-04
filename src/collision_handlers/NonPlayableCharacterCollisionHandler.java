@@ -1,10 +1,10 @@
 package collision_handlers;
 
+import design_patterns.Visitor;
 import sprites.NonPlayableCharacter;
 import sprites.NonStaticEnviroPlaceHolder;
 import sprites.Player;
 import sprites.StaticEnviroPlaceHolder;
-import sprites.Visitor;
 
 /**
  * Same idea as the PlayerCollisionHandler... 

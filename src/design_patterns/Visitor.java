@@ -1,4 +1,9 @@
-package sprites;
+package design_patterns;
+
+import sprites.NonPlayableCharacter;
+import sprites.NonStaticEnviroPlaceHolder;
+import sprites.Player;
+import sprites.StaticEnviroPlaceHolder;
 
 /** 
  * This is how we are going to handle collisions - through the Visitor 

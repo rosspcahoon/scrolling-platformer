@@ -1,4 +1,4 @@
-package level_editor;
+package viewUtil;
 
 import java.awt.Graphics2D;
 

@@ -1,5 +1,8 @@
 package level_editor;
 
+
+import viewUtil.Renderable;
+
 /**
  * Interface between LevelEditor and LEView. LevelEditor can only pass a Renderable
  * object to the view which will then paint the object.
@@ -7,7 +10,7 @@ package level_editor;
  * @author Danny Goodman
  *
  */
-public interface iLEView {
+public interface ILEView {
 
     /**
      * Render the Renderable Object based on State.

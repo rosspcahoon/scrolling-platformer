@@ -1,5 +1,6 @@
 package level_editor;
 
+<<<<<<< HEAD
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import util.Location;
@@ -15,6 +16,16 @@ import level_editor.commands.CommandLibrary;
  *
  */
 public class LevelEditor implements iLevelEditor {
+=======
+import util.IModel;
+import util.WorkspaceModel;
+
+public class LevelEditor implements ILevelEditor, IModel {
+
+    public LevelEditor (String language) {
+        // TODO Auto-generated constructor stub
+    }
+>>>>>>> cc6e9d36831ed8df8cdcd9a25f622626d3d29928
 
     private static final String SPACE = " ";
     private static final String NO_METHOD_COMMAND_ERROR = "Command does not exist";
@@ -65,6 +76,12 @@ public class LevelEditor implements iLevelEditor {
     @Command
     public void deleteSprite (int x, int y) {
         myLevel.deleteSprite(new Location(x,y));
+    }
+
+    @Override
+    public int processCommand (WorkspaceModel m, String cmd) {
+        // TODO Auto-generated method stub
+        return 0;
     }
     
     @Command
