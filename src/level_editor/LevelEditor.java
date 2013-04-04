@@ -1,11 +1,12 @@
 package level_editor;
 
-<<<<<<< HEAD
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import util.Location;
 import level_editor.commands.Command;
 import level_editor.commands.CommandLibrary;
+import level_editor.ILevelEditor;
 
 
 /**
@@ -15,8 +16,6 @@ import level_editor.commands.CommandLibrary;
  * @author Danny Goodman
  *
  */
-public class LevelEditor implements iLevelEditor {
-=======
 import util.IModel;
 import util.WorkspaceModel;
 
@@ -25,17 +24,16 @@ public class LevelEditor implements ILevelEditor, IModel {
     public LevelEditor (String language) {
         // TODO Auto-generated constructor stub
     }
->>>>>>> cc6e9d36831ed8df8cdcd9a25f622626d3d29928
 
     private static final String SPACE = " ";
     private static final String NO_METHOD_COMMAND_ERROR = "Command does not exist";
     private static final String PARAM_COMMAND_ERROR = "Incorrect Parameters";
     private static final String DEFAULT_COMMAND_ERROR = "Incorrect Command";
     private Editable myLevel;
-    private iLEView myView;
+    private ILEView myView;
 
     public LevelEditor () {
-        myLevel = new Level();
+        myLevel = new Level(0); // TODO Why the id????
     }
 
     /**
