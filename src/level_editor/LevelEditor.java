@@ -2,6 +2,8 @@ package level_editor;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import util.Location;
+import util.Sprite;
 import level_editor.commands.Command;
 import level_editor.commands.CommandLibrary;
 
@@ -12,7 +14,7 @@ public class LevelEditor implements iLevelEditor {
     private static final String NO_METHOD_COMMAND_ERROR = "Command does not exist";
     private static final String PARAM_COMMAND_ERROR = "Incorrect Parameters";
     private static final String DEFAULT_COMMAND_ERROR = "Incorrect Command";
-    private Level myLevel;
+    private Editable myLevel;
 
     public LevelEditor () {
         myLevel = new Level();
@@ -28,27 +30,27 @@ public class LevelEditor implements iLevelEditor {
             m.invoke(this, params);
         }
         catch (NullPointerException e) {
-            myLevel.getState().setErrorMessage(NO_METHOD_COMMAND_ERROR);
+            myLevel.setErrorMessage(NO_METHOD_COMMAND_ERROR);
         }
         catch (IllegalAccessException e) {
-            myLevel.getState().setErrorMessage(DEFAULT_COMMAND_ERROR);
+            myLevel.setErrorMessage(DEFAULT_COMMAND_ERROR);
         }
         catch (IllegalArgumentException e) {
-            myLevel.getState().setErrorMessage(PARAM_COMMAND_ERROR);
+            myLevel.setErrorMessage(PARAM_COMMAND_ERROR);
         }
         catch (InvocationTargetException e) {
-            myLevel.getState().setErrorMessage(DEFAULT_COMMAND_ERROR);
+            myLevel.setErrorMessage(DEFAULT_COMMAND_ERROR);
         }
     }
 
     @Command
     public void createSprite (int id, int x, int y) {
-        
+        //TODO create Sprite based on id.
     }
     
     @Command
     public void deleteSprite (int x, int y) {
-        
+        myLevel.deleteSprite(new Location(x,y));
     }
     
     @Command
