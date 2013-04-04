@@ -19,15 +19,12 @@ public class CommandLibrary {
         Method[] allMethods = LevelEditor.class.getMethods();
         for (int i = 0; i < allMethods.length; i++){
             Method currentMethod = allMethods[i];
-            System.out.println(currentMethod.getName());
             Annotation[] a = currentMethod.getAnnotations();
-            System.out.println(a.length +" annotations");
             for (int j = 0; j < a.length; j++){
                 System.out.println(a[j]);
             }
             if(currentMethod.isAnnotationPresent(Command.class)){
                 myCommandMap.put(currentMethod.getName(),currentMethod);
-                System.out.println(currentMethod.getName()+" was added to map");
             }
         }
     }

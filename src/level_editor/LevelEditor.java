@@ -43,7 +43,17 @@ public class LevelEditor implements iLevelEditor {
 
     @Command
     public void createSprite (int id, int x, int y) {
-        System.out.println("create sprite " + id + " at (" + x + "," + y + ")");
+        
+    }
+    
+    @Command
+    public void deleteSprite (int x, int y) {
+        
+    }
+    
+    @Command
+    public void changeBackground (int id) {
+        
     }
 
     private Integer[] getParams (String[] splitCommand) {
@@ -57,6 +67,6 @@ public class LevelEditor implements iLevelEditor {
     //For Preliminary Testing only. Will be deleted.
     public static void main (String args[]) {
         LevelEditor l = new LevelEditor();
-        l.processCommand("createSprite 1 400 500");
+        l.processCommand("deleteSprite 400 500");
     }
 }
