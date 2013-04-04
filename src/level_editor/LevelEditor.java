@@ -1,6 +1,13 @@
 package level_editor;
 
-public class LevelEditor implements iLevelEditor {
+import util.IModel;
+import util.WorkspaceModel;
+
+public class LevelEditor implements iLevelEditor, IModel {
+
+    public LevelEditor (String language) {
+        // TODO Auto-generated constructor stub
+    }
 
     @Override
     public void processCommand () {
@@ -10,6 +17,12 @@ public class LevelEditor implements iLevelEditor {
 
     public void createSprite(){
         
+    }
+
+    @Override
+    public int processCommand (WorkspaceModel m, String cmd) {
+        // TODO Auto-generated method stub
+        return 0;
     }
     
 }

@@ -4,13 +4,14 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 import util.Sprite;
+import util.WorkspaceModel;
 import viewUtil.Renderable;
 
-public class Level implements Renderable{
+public class Level extends WorkspaceModel{
 
     private List<Sprite> mySprites;
     
-    public Level(){
+    public Level(int id){
         mySprites = new ArrayList<Sprite>();
     }   
     

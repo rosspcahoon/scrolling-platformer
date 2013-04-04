@@ -15,19 +15,22 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JTabbedPane;
-import Renderable;
+import util.Controller;
+import util.IWindow;
+import viewUtil.Renderable;
 
 /**
- * The manager for all the views of SLogo
+ * The manager for all the views of the application
  * @author Ross Cahoon, Dagbedji Fagnisse
  *
  */
 @SuppressWarnings("serial")
-public class Window extends JFrame {
+public class Window extends JFrame implements IWindow {
 
     private static ResourceBundle ourResources;
     private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
     private static final String USER_DIR = "user.dir";
+    private Controller myController;
     private JTabbedPane myTabbedPane;
     private JMenuBar myMenuBar;
     private JFileChooser myChooser;
@@ -44,9 +47,9 @@ public class Window extends JFrame {
         this.setResizable(false);
         setPreferredSize(mySize);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        myController=controller;
         // create and arrange sub-parts of the GUI
         ourResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
-        myController = controller;
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
         //tabs
         getContentPane().setLayout(new GridBagLayout());       
@@ -59,7 +62,7 @@ public class Window extends JFrame {
      * Way to initialize tab creation from the window
      */
     public void addTab() {
-        myController.newSLogoSession();
+        myController.initializeWorkspace();
     }
 
     protected void addComponents() {
@@ -74,7 +77,7 @@ public class Window extends JFrame {
      * @param tab The tab to be added
      * @param p The Renderable that it is associated with
      */
-    public void addTab (TabView tab, Renderable p) {
+    public void addTab (WorkspaceView tab, Renderable p) {
         myTabbedPane.addTab(getLiteral("TabTitle") + " " + (tab.getID() + 1), tab);
         tab.setRenderable(p);
     }
@@ -114,7 +117,7 @@ public class Window extends JFrame {
      * @param tabView The Tabview that is requesting the string to be processed
      * @param s The string to be processed
      */
-    public int processCommand (TabView tabView, String s) {
+    public int processCommand (WorkspaceView tabView, String s) {
         return myController.processCommand(tabView, s);
     }
     
@@ -127,8 +130,8 @@ public class Window extends JFrame {
         return processCommand(getActiveTab(), s);
     }
     
-    private TabView getActiveTab() {
-        return (TabView) myTabbedPane.getSelectedComponent();
+    private WorkspaceView getActiveTab() {
+        return (WorkspaceView) myTabbedPane.getSelectedComponent();
     }
 
     /**
@@ -176,7 +179,7 @@ public class Window extends JFrame {
             Image img;
             try {
                 img = ImageIO.read(myChooser.getSelectedFile());
-                TabView temp = getActiveTab();
+                WorkspaceView temp = getActiveTab();
                 if (temp != null) {
                     temp.setBackground(img);
                 }
@@ -191,11 +194,43 @@ public class Window extends JFrame {
      * Toggle the grid off or on
      */
     public void toggleGrid() {
-        TabView temp = getActiveTab();
+        WorkspaceView temp = getActiveTab();
         if (temp != null) {
             temp.toggleGrid();
         }
     }
+    
+    
+    /**
+     * 
+     * @return - number of tabs
+     */
+    public int getTabCount() {
+        return myTabbedPane.getTabCount();
+    }
+    
+    /**
+     * Undo last action for active workspace
+     */
+    public void undo () {
+        getActiveTab().undo();
+    }
+    
+    /**
+     * redo last (undone) action for active worspace
+     */
+    public void redo () {
+        getActiveTab().redo();
+    }
+    
+    
+    
+    /**
+     * TODO: refactor the part below as they are specific to SLogo and not to the window
+     * maybe it would make sense to have them being required by setting the window to
+     * implement an interface, and ensuring that the implementation is delegated to 
+     * some component of the window.
+     */
     
     /**
      * Set the turtle shape
@@ -204,7 +239,7 @@ public class Window extends JFrame {
         int response = myChooser.showOpenDialog(null);
         if (response == JFileChooser.APPROVE_OPTION) {
             String imgURL = myChooser.getSelectedFile().getAbsolutePath();
-            TabView temp = (TabView) myTabbedPane.getSelectedComponent();
+            WorkspaceView temp = (WorkspaceView) myTabbedPane.getSelectedComponent();
             if (temp != null) {
                 return;
             }
@@ -214,7 +249,7 @@ public class Window extends JFrame {
     }
 
     private void setTurtleShape (int i) {
-        TabView temp = (TabView) myTabbedPane.getSelectedComponent();
+        WorkspaceView temp = (WorkspaceView) myTabbedPane.getSelectedComponent();
         processCommand(temp, "setshape " + i);
     }
 
@@ -237,26 +272,10 @@ public class Window extends JFrame {
                                  + result.getBlue());
         processCommand(getLiteral("COMMAND_NAME_SET_PEN_COLOR") + " " + pos);
     }
-    
-    /**
-     * 
-     * @return - number of tabs
-     */
-    public int getTabCount() {
-        return myTabbedPane.getTabCount();
-    }
-    
-    /**
-     * Undo last action for active workspace
-     */
-    public void undo () {
-        getActiveTab().undo();
-    }
-    
-    /**
-     * redo last (undone) action for active worspace
-     */
-    public void redo () {
-        getActiveTab().redo();
+
+    @Override
+    public void addWorkspace (WorkspaceView associatedTab, Renderable r) {
+        // TODO Auto-generated method stub
+        
     }
 }
