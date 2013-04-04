@@ -8,6 +8,7 @@ import util.Sprite;
 public class Level implements Renderable{
 
     private List<Sprite> mySprites;
+    private Status myStatus;
     
     public Level(){
         mySprites = new ArrayList<Sprite>();
@@ -18,9 +19,8 @@ public class Level implements Renderable{
     }
     
     @Override
-    public Object getState () {
-        // TODO Auto-generated method stub
-        return null;
+    public Status getState () {
+        return myStatus;
     }
 
     @Override
