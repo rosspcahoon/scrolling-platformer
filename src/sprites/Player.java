@@ -49,6 +49,4 @@ public class Player extends AbstractCharacter {
     public void changeState(State newState) {
         currentState = newState;
     }
-
-
 }
