@@ -20,6 +20,7 @@ public class Level implements Renderable, Editable{
     } 
     
 //Methods from Renderable Interface. To be called by View components.  
+    
     @Override
     public Status getState () {
         return myStatus;
@@ -33,6 +34,7 @@ public class Level implements Renderable, Editable{
 
     
 //Methods from Editable Interface. Methods called by LevelEditor.
+    
     @Override
     public void changeBackground () { //params need to be added
         // TODO Auto-generated method stub

@@ -6,30 +6,48 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import level_editor.LevelEditor;
 
+
+/**
+ * Contains the Map of @Command Methods to their names.
+ * 
+ * @author Danny Goodman
+ * 
+ */
 public class CommandLibrary {
 
-    private static Map<String,Method> myCommandMap;
-    
-    static{
-        myCommandMap = new HashMap<String,Method>();
+    private static Map<String, Method> myCommandMap;
+
+    static {
+        myCommandMap = new HashMap<String, Method>();
         fillMap();
     }
 
+    /**
+     * Gets the Method represented by the key. If key does not represent the
+     * name of a @Command Method, returns null.
+     * 
+     * @param key - name of the Method
+     * @return Method represented by key
+     */
+    public static Method get (String key) {
+        return myCommandMap.get(key);
+    }
+
+    /**
+     * Populates myCommandMap with @Command Methods from the LevelEditor
+     * mapped to their Method names.
+     */
     private static void fillMap () {
         Method[] allMethods = LevelEditor.class.getMethods();
-        for (int i = 0; i < allMethods.length; i++){
+        for (int i = 0; i < allMethods.length; i++) {
             Method currentMethod = allMethods[i];
             Annotation[] a = currentMethod.getAnnotations();
-            for (int j = 0; j < a.length; j++){
+            for (int j = 0; j < a.length; j++) {
                 System.out.println(a[j]);
             }
-            if(currentMethod.isAnnotationPresent(Command.class)){
-                myCommandMap.put(currentMethod.getName(),currentMethod);
+            if (currentMethod.isAnnotationPresent(Command.class)) {
+                myCommandMap.put(currentMethod.getName(), currentMethod);
             }
         }
-    }
-    
-    public static Method get(String key){
-        return myCommandMap.get(key);
     }
 }

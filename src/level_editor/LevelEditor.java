@@ -3,11 +3,17 @@ package level_editor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import util.Location;
-import util.Sprite;
 import level_editor.commands.Command;
 import level_editor.commands.CommandLibrary;
 
 
+/**
+ * Level Editor creates and edits an Editable Level based on input from the
+ * iLEView myView.
+ * 
+ * @author Danny Goodman
+ *
+ */
 public class LevelEditor implements iLevelEditor {
 
     private static final String SPACE = " ";
@@ -15,11 +21,19 @@ public class LevelEditor implements iLevelEditor {
     private static final String PARAM_COMMAND_ERROR = "Incorrect Parameters";
     private static final String DEFAULT_COMMAND_ERROR = "Incorrect Command";
     private Editable myLevel;
+    private iLEView myView;
 
     public LevelEditor () {
         myLevel = new Level();
     }
 
+    /**
+     * Takes in the command name and parameters all as one String to be processed.
+     * Splits the string by White Space and obtains name and parameters from String.
+     * Calls @Command method through reflection.
+     * 
+     * @param command - the input from the LEView. 
+     */
     @Override
     public void processCommand (String command) {
         String[] splitCommand = command.split(SPACE);
@@ -55,9 +69,15 @@ public class LevelEditor implements iLevelEditor {
     
     @Command
     public void changeBackground (int id) {
-        
+        //TODO change Background based on id
     }
 
+    /**
+     * Takes in the command as a Sting[] and returns the parameters as an Integer[].
+     * The output is used by the processCommand method to invoke the command method.
+     * @param splitCommand - command as a String[] with name followed by params.
+     * @return Integer[] of parameters
+     */
     private Integer[] getParams (String[] splitCommand) {
         Integer[] params = new Integer[splitCommand.length - 1];
         for (int i = 0; i < params.length; i++) {
