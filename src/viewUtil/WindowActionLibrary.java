@@ -10,7 +10,7 @@ import javax.swing.KeyStroke;
  * @author Dagbedji Fagnisse, Ross Cahoon
  *
  */
-public class ActionLibrary {
+public class WindowActionLibrary {
     
     private Window myWindow;
     
@@ -18,7 +18,7 @@ public class ActionLibrary {
      * Instantiate a Library for a specific window
      * @param w - window specified
      */
-    public ActionLibrary(Window w) {
+    public WindowActionLibrary(Window w) {
         myWindow = w;
     }
     

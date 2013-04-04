@@ -1,16 +1,14 @@
-package util;
+package level_editor;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import util.IModel;
+import util.WorkspaceModel;
 import viewUtil.Renderable;
 import viewUtil.Window;
 import viewUtil.WorkspaceView;
-import level_editor.LEView;
-import level_editor.LETab;
-import level_editor.Level;
-import level_editor.LevelEditor;
 
 /**
  * The controller is responsible for interfacing between an IView and an IModel.
@@ -22,7 +20,7 @@ import level_editor.LevelEditor;
  *
  */
 
-public class Controller {
+public class LEController {
 
     private Window myView;
     private IModel myModel;
@@ -32,7 +30,7 @@ public class Controller {
     /**
      * Constructor
      */
-    public Controller() {
+    public LEController() {
         String language = getLanguage();
         myModel = new LevelEditor(language);
         myView = new LEView("Level Editor", language, this);

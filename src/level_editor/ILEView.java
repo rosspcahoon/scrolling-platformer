@@ -2,7 +2,7 @@ package level_editor;
 
 import viewUtil.Renderable;
 
-public interface iLEView {
+public interface ILEView {
 
     public void render(Renderable r);
     

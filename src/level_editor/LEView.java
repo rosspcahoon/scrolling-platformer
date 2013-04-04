@@ -2,13 +2,11 @@ package level_editor;
 
 import java.util.ResourceBundle;
 import javax.swing.JFrame;
-import util.Controller;
-import util.IWindow;
 import viewUtil.Renderable;
 import viewUtil.Window;
 
 
-public class LEView extends Window implements iLEView {
+public class LEView extends Window implements ILEView {
     
 
     private static final long serialVersionUID = 1L;
@@ -16,8 +14,8 @@ public class LEView extends Window implements iLEView {
     private static final String DEFAULT_RESOURCE_PACKAGE = "";
     private ResourceBundle myResources;
     
-    public LEView (String string, String language, Controller controller) {
-        super(string, language, controller);
+    public LEView (String string, String language, LEController lEController) {
+        super(string, language, lEController);
         // TODO Auto-generated constructor stub
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();

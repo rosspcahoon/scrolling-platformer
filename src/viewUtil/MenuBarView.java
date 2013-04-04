@@ -19,7 +19,7 @@ import javax.swing.Timer;
 public class MenuBarView extends JMenuBar {
     private static final int DEFAULT_DELAY = 100;
     private Window myWindow;
-    private ActionLibrary myActionLibrary;
+    private WindowActionLibrary myActionLibrary;
     private JMenu myFileMenu;
     private JMenu myPreferencesMenu;
     private JMenu myHelpMenu;
@@ -33,7 +33,7 @@ public class MenuBarView extends JMenuBar {
     
     public MenuBarView(Window window) {
         myWindow = window;
-        myActionLibrary = new ActionLibrary(myWindow);
+        myActionLibrary = new WindowActionLibrary(myWindow);
         addComponents();
         ActionListener prefListener =  new ActionListener() {
             public void actionPerformed (ActionEvent e) {

@@ -15,7 +15,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JTabbedPane;
-import util.Controller;
+import level_editor.LEController;
 import util.IWindow;
 import viewUtil.Renderable;
 
@@ -30,7 +30,7 @@ public class Window extends JFrame implements IWindow {
     private static ResourceBundle ourResources;
     private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
     private static final String USER_DIR = "user.dir";
-    private Controller myController;
+    private LEController myController;
     private JTabbedPane myTabbedPane;
     private JMenuBar myMenuBar;
     private JFileChooser myChooser;
@@ -40,14 +40,14 @@ public class Window extends JFrame implements IWindow {
      * Constructor for Window
      * @param title The title of the View
      * @param language The display language for the window
-     * @param controller The Controller responsible for this view
+     * @param lEController The Controller responsible for this view
      */
-    public Window (String title, String language, Controller controller) {
+    public Window (String title, String language, LEController lEController) {
         super(title);
         this.setResizable(false);
         setPreferredSize(mySize);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myController=controller;
+        myController=lEController;
         // create and arrange sub-parts of the GUI
         ourResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));

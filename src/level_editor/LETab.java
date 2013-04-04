@@ -10,7 +10,7 @@ import viewUtil.WorkspaceView;
  * @author Dagbedji Fagnisse
  *
  */
-public class LETab extends WorkspaceView implements iLEView {
+public class LETab extends WorkspaceView implements ILEView {
 
     public LETab (Container host) {
         super(host);
