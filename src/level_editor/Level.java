@@ -4,13 +4,10 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import util.PlatformerConstants;
 import util.Sprite;
 //import util.Sprite;
 import util.WorkspaceModel;
-import viewUtil.Renderable;
-
 public class Level extends WorkspaceModel{
 
     private Sprite myPlayer;
@@ -19,13 +16,13 @@ public class Level extends WorkspaceModel{
     private List<Sprite> myFrameOfReferenceSprites;
 
     public Level(int id){
-        //        mySprites = new ArrayList<Sprite>();
+        mySprites = new ArrayList<Sprite>();
     }   
 
-    //    public void addSprite(Sprite s){
-    //        mySprites.add(s);
-    //    }
-    //    
+    public void addSprite(Sprite s){
+        mySprites.add(s);
+    }
+
     @Override
     public Object getState () {
         // TODO Auto-generated method stub
@@ -44,8 +41,9 @@ public class Level extends WorkspaceModel{
         for(Sprite s: mySprites) {
             if(checkRange(s, PlatformerConstants.REFERENCE_FRAME_SIZE)) {
                 myFrameOfReferenceSprites.add(s);
+                myFrameOfActionSprites.add(s);
             }
-            if(checkRange(s, PlatformerConstants.ACTION_FRAME_SIZE)) {
+            if(!myFrameOfActionSprites.contains(s) & checkRange(s, PlatformerConstants.ACTION_FRAME_SIZE)) {
                 myFrameOfActionSprites.add(s);
             }
         }
