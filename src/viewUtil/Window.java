@@ -65,7 +65,7 @@ public class Window extends JFrame implements IWindow {
         myController.initializeWorkspace();
     }
 
-    protected void addComponents() {
+    private void addComponents() {
         myMenuBar = new MenuBarView(this);
         myTabbedPane = new JTabbedPane();
         setJMenuBar(myMenuBar);
