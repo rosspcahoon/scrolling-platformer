@@ -14,11 +14,11 @@ public class Main
 {
     // constants
     public static final Dimension SIZE = new Dimension(1200, 800);
-    public static final String TITLE = "Khopesh";
+    public static final String TITLE = "Scrolling Test";
 
 
     /**
-     * main --- where the program staarts
+     * main --- where the program starts
      * @param args
      */
     public static void main (String args[])

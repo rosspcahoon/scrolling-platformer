@@ -22,7 +22,10 @@ public class Model {
      * Create a game of the given size with the given display for its shapes.
      */
     public Model(View view) {
-        myView = view;  
+        myView = view;
+        //ONLY USED FOR TESTING
+        myCurrLevel = new Level(1);
+        //ONLY USED FOR TESTING
     }
 
     /**

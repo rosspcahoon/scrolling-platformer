@@ -19,7 +19,11 @@ public class Level extends WorkspaceModel{
     public Level(int id){
         mySize = PlatformerConstants.DEFAULT_LEVEL_SIZE;
         mySprites = new ArrayList<Sprite>();
-    }   
+    }
+    
+    public void setSize(Dimension size) {
+        mySize = size;
+    }
 
     public void addSprite(Sprite s){
         if(s.getClass().getName().equals("Player")) {
@@ -49,6 +53,7 @@ public class Level extends WorkspaceModel{
         for(Sprite s: myFrameOfActionSprites) {
             s.paint(pen);
         }
+        myPlayer.paint(pen);
     }
 
     private void updateFrames() {
