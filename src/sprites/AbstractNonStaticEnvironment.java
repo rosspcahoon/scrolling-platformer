@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import util.Location;
 import util.Pixmap;
 import util.Sprite;
+import view.View;
 
 public class AbstractNonStaticEnvironment extends Sprite {
 

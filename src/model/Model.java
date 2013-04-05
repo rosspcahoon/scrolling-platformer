@@ -4,9 +4,11 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.List;
 import sprites.Player;
+import sprites.StaticEnviroPlaceHolder;
 import util.Location;
 import util.Pixmap;
 import util.PlatformerConstants;
+import util.Sprite;
 import view.View;
 import level_editor.Level;
 
@@ -31,9 +33,12 @@ public class Model {
         myCurrLevel = new Level(1);
         myCurrLevel.setSize(PlatformerConstants.DEFAULT_LEVEL_SIZE);
         myCurrLevel.addSprite(new Player(new Pixmap("brick9.gif"), 
-                                     new Location(myView.getWidth() / 2, myView.getHeight()-25),
+                                     new Location(myView.getWidth() / 2, myView.getHeight() / 2),
                                      new Dimension(25, 25),
                                      myView));
+        myCurrLevel.addSprite(new StaticEnviroPlaceHolder(new Pixmap("brick10.gif"), 
+                                         new Location(myView.getWidth() - 100, myView.getHeight() - 100),
+                                         new Dimension(25, 25)));        
         
         //ONLY USED FOR TESTING
     }
@@ -52,5 +57,12 @@ public class Model {
     public void paint(Graphics2D pen) {
         myCurrLevel.paint(pen);
     }
-
+    
+    public int getRightBoundary() {
+        return myCurrLevel.getRightBoundary();
+    }
+    
+    public int getLowerBoundary() {
+        return myCurrLevel.getLowerBoundary();
+    }
 }

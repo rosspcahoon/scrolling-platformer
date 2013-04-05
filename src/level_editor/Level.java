@@ -12,7 +12,7 @@ import util.WorkspaceModel;
 public class Level extends WorkspaceModel{
 
     private Dimension mySize;
-    private Sprite myPlayer;
+    private Player myPlayer;
     private List<Sprite> mySprites;
     private List<Sprite> myFrameOfActionSprites;
     private List<Sprite> myFrameOfReferenceSprites;
@@ -39,8 +39,9 @@ public class Level extends WorkspaceModel{
      */
 
     public void addSprite(Sprite s){
+
         if(s.getClass().getName().equals("sprites.Player")) {
-            myPlayer = s;
+            myPlayer = (Player) s;
         }
         else {
             mySprites.add(s);
@@ -95,12 +96,20 @@ public class Level extends WorkspaceModel{
         //        System.out.println(myPlayer == null);
         //        double x = myPlayer.getX();
         if(myPlayer == null ||
-                myPlayer.getX() - frame.getWidth()/2 > sprite.getX()
-                | myPlayer.getX() + frame.getWidth()/2 < sprite.getX()
-                | myPlayer.getY() - frame.getHeight()/2 > sprite.getY()
-                | myPlayer.getY() + frame.getHeight()/2 < sprite.getY()) {
+                myPlayer.getLeftBoundary(frame) > sprite.getX()
+                || myPlayer.getRightBoundary(frame) < sprite.getX()
+                || myPlayer.getLowerBoundary(frame) > sprite.getY()
+                || myPlayer.getUpperBoundary(frame) < sprite.getY()) {
             return false;
         }
         return true;
+    }
+    
+    public int getRightBoundary() {
+        return myPlayer.getRightBoundary(PlatformerConstants.DEFAULT_WINDOW_SIZE);
+    }
+    
+    public int getLowerBoundary() {
+        return myPlayer.getLowerBoundary(PlatformerConstants.DEFAULT_WINDOW_SIZE);
     }
 }

@@ -81,20 +81,26 @@ public class Player extends AbstractCharacter {
    
 // Not sure if we will need this.
     public void paint() {
-        currentState.draw(pen);
+        //currentState.draw(pen);
     }
     
     public void changeState(State newState) {
         currentState = newState;
     }
     
-    public int getRightBoundary() {
-        
-        return 0;
+    public int getRightBoundary(Dimension frame) {
+        return (int) (this.getX() + frame.getWidth() / 2);
     }
     
-    public int getLeftBoundary() {
-        
-        return 0;
+    public int getLeftBoundary(Dimension frame) {        
+        return (int) (this.getX() - frame.getWidth() / 2);
+    }
+    
+    public int getUpperBoundary(Dimension frame) {
+        return (int) (this.getY() - frame.getHeight() / 2);
+    }
+    
+    public int getLowerBoundary(Dimension frame) {        
+        return (int) (this.getY() + frame.getHeight() / 2);
     }
 }

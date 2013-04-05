@@ -75,7 +75,7 @@ public class View extends JComponent {
     @Override
     public void paintComponent (Graphics pen) {
         Image img = new ImageIcon(getClass().getResource("/images/forestbackground.jpg")).getImage();
-        pen.drawImage(img, 0, 0, 800, 300, null);
+        pen.drawImage(img, this.getWidth() - myGame.getRightBoundary(), this.getHeight() - myGame.getLowerBoundary(), 800, 300, null);
         // first time needs to be special cased :(
         if (myGame != null) {
             myGame.paint((Graphics2D) pen);
