@@ -78,7 +78,8 @@ public class Player extends AbstractCharacter {
         }
 //        ONLY FOR TESTING
     }
-    
+   
+// Not sure if we will need this.
     public void paint() {
         currentState.draw(pen);
     }
