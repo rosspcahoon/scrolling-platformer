@@ -28,11 +28,20 @@ public class Level extends WorkspaceModel{
         // TODO Auto-generated method stub
         return null;
     }
+    
+    public void update() {
+        updateFrames();
+//        myPlayer.update(elapsedTime, bounds);
+        for(Sprite s: myFrameOfActionSprites) {
+//            s.update(elapsedTime, bounds);
+        }
+    }
 
     @Override
     public void paint (Graphics2D pen) {
-        updateFrames();
-        // TODO Auto-generated method stub
+        for(Sprite s: myFrameOfActionSprites) {
+            s.paint(pen);
+        }
     }
 
     private void updateFrames() {

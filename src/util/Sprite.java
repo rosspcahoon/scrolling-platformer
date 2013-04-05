@@ -36,10 +36,6 @@ public abstract class Sprite {
     // cached for efficiency
     private Rectangle myBounds;
     
-
-    
-    
-    
     /**
      * Create a shape at the given position, with the given size.
      */
