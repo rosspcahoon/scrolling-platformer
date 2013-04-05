@@ -13,7 +13,7 @@ import level_editor.Level;
  * @author Ross Cahoon
  */
 public class Model {
-    private List<Level> myLevels;
+   // private List<Level> myLevels;
     private Level myCurrLevel;
     private View myView;
 
@@ -30,7 +30,7 @@ public class Model {
      */
     public void update(double elapsedTime) {
         Dimension bounds = myView.getSize();
-            updateSprites(elapsedTime, bounds, myView);
+//            updateSprites(elapsedTime, bounds, myView);
 
     }
 
