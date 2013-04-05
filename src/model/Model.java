@@ -3,6 +3,7 @@ package model;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.List;
+import view.View;
 import level_editor.Level;
 
 
