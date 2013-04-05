@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +16,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 import java.util.TreeSet;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 import model.Model;
@@ -53,6 +55,8 @@ public class View extends JComponent {
         // set size (a bit of a pain)
         setPreferredSize(size);
         setSize(size);
+        setMaximumSize(size);
+        setMinimumSize(size);
         // prepare to receive input
         setFocusable(true);
         requestFocus();
@@ -70,8 +74,8 @@ public class View extends JComponent {
      */
     @Override
     public void paintComponent (Graphics pen) {
-        pen.setColor(new Color(110,187,104));
-        pen.fillRect(0, 0, getSize().width, getSize().height);
+        Image img = new ImageIcon(getClass().getResource("/images/forestbackground.jpg")).getImage();
+        pen.drawImage(img, 0, 0, 800, 300, null);
         // first time needs to be special cased :(
         if (myGame != null) {
             myGame.paint((Graphics2D) pen);

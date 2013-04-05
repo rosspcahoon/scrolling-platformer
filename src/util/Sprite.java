@@ -19,9 +19,9 @@ import java.awt.geom.Point2D;
 public abstract class Sprite {
     // canonical directions for a collision
     public static final int RIGHT_DIRECTION = 0;
-    public static final int UP_DIRECTION =  90;
+    public static final int UP_DIRECTION =  270;
     public static final int LEFT_DIRECTION = 180;
-    public static final int DOWN_DIRECTION = 270;
+    public static final int DOWN_DIRECTION = 90;
 
     // state
     private Location myCenter;

@@ -54,7 +54,7 @@ public class Player extends AbstractCharacter {
     }
     
     
-    public void update() {
+    public void update(double elapsedTime, Dimension bounds) {
 //        Commented out for scrolling testing
 //        currentState.update();
         // move based on input
@@ -86,5 +86,15 @@ public class Player extends AbstractCharacter {
     
     public void changeState(State newState) {
         currentState = newState;
+    }
+    
+    public int getRightBoundary() {
+        
+        return 0;
+    }
+    
+    public int getLeftBoundary() {
+        
+        return 0;
     }
 }

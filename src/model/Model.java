@@ -3,6 +3,10 @@ package model;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.List;
+import sprites.Player;
+import util.Location;
+import util.Pixmap;
+import util.PlatformerConstants;
 import view.View;
 import level_editor.Level;
 
@@ -25,6 +29,12 @@ public class Model {
         myView = view;
         //ONLY USED FOR TESTING
         myCurrLevel = new Level(1);
+        myCurrLevel.setSize(PlatformerConstants.DEFAULT_LEVEL_SIZE);
+        myCurrLevel.addSprite(new Player(new Pixmap("brick9.gif"), 
+                                     new Location(myView.getWidth() / 2, myView.getHeight()-25),
+                                     new Dimension(25, 25),
+                                     myView));
+        
         //ONLY USED FOR TESTING
     }
 
@@ -33,8 +43,7 @@ public class Model {
      */
     public void update(double elapsedTime) {
         Dimension bounds = myView.getSize();
-//            updateSprites(elapsedTime, bounds, myView);
-
+        myCurrLevel.update(elapsedTime, bounds);
     }
 
     /**

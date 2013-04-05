@@ -12,7 +12,7 @@ public class PlatformerConstants {
     /**
      * The size for Window objects
      */
-    public static final Dimension DEFAULT_WINDOW_SIZE = new Dimension(1200, 800);
+    public static final Dimension DEFAULT_WINDOW_SIZE = new Dimension(800, 300);
     
     /**
      * The size for the frame of reference
@@ -25,7 +25,7 @@ public class PlatformerConstants {
     
     public static final Dimension ACTION_FRAME_SIZE = new Dimension(REFERENCE_FRAME_SIZE.width + 200, REFERENCE_FRAME_SIZE.height + 200);
 
-    public static final Dimension DEFAULT_LEVEL_SIZE = new Dimension(2400, 800);
+    public static final Dimension DEFAULT_LEVEL_SIZE = new Dimension(1200, 300);
 
     /**
      * Added to fully prevent instantiation of this utility class.

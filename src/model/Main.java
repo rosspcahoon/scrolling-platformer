@@ -2,6 +2,7 @@ package model;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import util.PlatformerConstants;
 import view.View;
 
 
@@ -13,7 +14,6 @@ import view.View;
 public class Main
 {
     // constants
-    public static final Dimension SIZE = new Dimension(1200, 800);
     public static final String TITLE = "Scrolling Test";
 
 
@@ -24,7 +24,7 @@ public class Main
     public static void main (String args[])
     {
         // view of user's content
-        View display = new View(SIZE);
+        View display = new View(PlatformerConstants.DEFAULT_WINDOW_SIZE);
         // container that will work with user's OS
         JFrame frame = new JFrame(TITLE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,7 +33,6 @@ public class Main
         // display them
         frame.pack();
         frame.setVisible(true);
-        frame.setResizable(false);
         // start animation
         display.start();
         // TODO: handle iconify (reason for start/stop)
