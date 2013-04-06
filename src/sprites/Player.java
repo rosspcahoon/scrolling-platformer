@@ -35,7 +35,7 @@ public class Player extends AbstractCharacter {
     List<State> myStates;
     State currentState; 
     View myView;
-    private Location myCenter;
+    private Location myOriginalCenter;
     private Dimension mySize;
     private Pixmap myImage;
     
@@ -53,7 +53,7 @@ public class Player extends AbstractCharacter {
     public Player (Pixmap image, Location center, Dimension size, View view) {
         super(image, center, size);
         myView = view;
-        myCenter = center;
+        myOriginalCenter = center;
         mySize = size;
         myImage = image;
     }
@@ -86,11 +86,15 @@ public class Player extends AbstractCharacter {
    
     @Override
     public void paint (Graphics2D pen) {
-        myImage.paint(pen, myCenter, mySize);
+        myImage.paint(pen, myOriginalCenter, mySize);
     }
     
     public void changeState(State newState) {
         currentState = newState;
+    }
+    
+    public Location getOriginalCenter() {
+        return myOriginalCenter;
     }
     
     public int getRightBoundary(Dimension frame) {

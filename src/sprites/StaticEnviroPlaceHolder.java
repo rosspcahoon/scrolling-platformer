@@ -14,12 +14,9 @@ import util.Pixmap;
  * @author Jay Wang
  */
 public class StaticEnviroPlaceHolder extends AbstractStaticEnvironment {
-    private Pixmap myImage;
 
     public StaticEnviroPlaceHolder (Pixmap image, Location center, Dimension size) {
         super(image, center, size);
-        myImage = image;
-        mySize = size;
     }
 
 }

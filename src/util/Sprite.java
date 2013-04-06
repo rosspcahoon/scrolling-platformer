@@ -24,9 +24,9 @@ public abstract class Sprite {
     public static final int DOWN_DIRECTION = 90;
 
     // state
-    protected Location myCenter;
+    private Location myCenter;
     private Vector myVelocity;
-    protected Dimension mySize;
+    private Dimension mySize;
     private Pixmap myView;
     // keep copies of the original state so shape can be reset as needed
     private Location myOriginalCenter;
@@ -234,8 +234,8 @@ public abstract class Sprite {
     /**
      * Display this shape translated on the screen, used for all Sprites besides Player
      */
-    public void paint (Graphics2D pen, Location loc) {
-        myView.paint(pen, translate(loc), mySize);
+    public void paint (Graphics2D pen, Location loc, Location origLoc) {
+        myView.paint(pen, translate(loc, origLoc), mySize);
         
     }
     
@@ -245,8 +245,8 @@ public abstract class Sprite {
      * @return the translated Location
      */
     
-    private Location translate(Location loc) {
-         Location temp =  new Location(myCenter.getX()-loc.getX(), myCenter.getY() - loc.getY());        
+    private Location translate(Location loc, Location origLoc) {
+        Location temp =  new Location(myCenter.getX()-(loc.getX()-origLoc.getX()), myCenter.getY() - (loc.getY() - origLoc.getY()));        
         return temp;
     }
     
