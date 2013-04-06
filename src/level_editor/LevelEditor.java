@@ -20,10 +20,6 @@ import util.WorkspaceModel;
 
 public class LevelEditor implements IModel {
 
-    public LevelEditor (String language) {
-        // TODO Auto-generated constructor stub
-    }
-
     private static final String SPACE = " ";
     private static final String NO_METHOD_COMMAND_ERROR = "Command does not exist";
     private static final String PARAM_COMMAND_ERROR = "Incorrect Parameters";
@@ -31,7 +27,34 @@ public class LevelEditor implements IModel {
     private Editable myLevel;
 
     public LevelEditor () {
-        myLevel = new Level(0); // TODO Why the id????
+        myLevel = new Level(1); 
+    }
+
+    public LevelEditor (String language) {
+        this();
+    }
+
+    @Override
+    public int processCommand (WorkspaceModel m, String cmd) {
+        // TODO Auto-generated method stub
+        myLevel = (Level) m;
+        processCommand(cmd);
+        return 0;
+    }
+
+    @Command
+    public void createSprite (int id, int x, int y) {
+        //TODO create Sprite based on id.
+    }
+    
+    @Command
+    public void deleteSprite (int x, int y) {
+        myLevel.deleteSprite(new Location(x,y));
+    }
+
+    @Command
+    public void changeBackground (int id) {
+        //TODO change Background based on id
     }
 
     /**
@@ -64,29 +87,6 @@ public class LevelEditor implements IModel {
         }
     }
 
-    @Command
-    public void createSprite (int id, int x, int y) {
-        //TODO create Sprite based on id.
-    }
-    
-    @Command
-    public void deleteSprite (int x, int y) {
-        myLevel.deleteSprite(new Location(x,y));
-    }
-
-    @Override
-    public int processCommand (WorkspaceModel m, String cmd) {
-        // TODO Auto-generated method stub
-        myLevel = (level) m;
-        processCommand(cmd);
-        return 0;
-    }
-    
-    @Command
-    public void changeBackground (int id) {
-        //TODO change Background based on id
-    }
-
     /**
      * Takes in the command as a Sting[] and returns the parameters as an Integer[].
      * The output is used by the processCommand method to invoke the command method.
@@ -104,6 +104,6 @@ public class LevelEditor implements IModel {
     //For Preliminary Testing only. Will be deleted.
     public static void main (String args[]) {
         LevelEditor l = new LevelEditor();
-        l.processCommand("deleteSprite 400 500");
+        l.processCommand("addSprite 1 400 500");
     }
 }

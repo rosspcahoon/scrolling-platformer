@@ -15,6 +15,7 @@ public class Level extends WorkspaceModel implements Editable{
     
     public Level(int id){
         mySprites = new ArrayList<Sprite>();
+        myStatus = new Status();
     }   
     
     public void addSprite(Sprite s){
