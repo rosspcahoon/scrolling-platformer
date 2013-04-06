@@ -58,8 +58,6 @@ public class View extends JComponent {
         // set size (a bit of a pain)
         setPreferredSize(size);
         setSize(size);
-        setMaximumSize(size);
-        setMinimumSize(size);
         // prepare to receive input
         setFocusable(true);
         requestFocus();

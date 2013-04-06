@@ -9,13 +9,17 @@ import util.PlatformerConstants;
 import util.Sprite;
 //import util.Sprite;
 import util.WorkspaceModel;
+import view.View;
 public class Level extends WorkspaceModel{
 
     private Dimension mySize;
+    private Dimension frameOfReferenceSize;
+    private Dimension frameOfActionSize;
     private Player myPlayer;
     private List<Sprite> mySprites;
     private List<Sprite> myFrameOfActionSprites;
     private List<Sprite> myFrameOfReferenceSprites;
+    
 
     public Level(int id){
         //MIGHT WANT TO INITIALIZE THIS WITH A PLAYER AS WELL
@@ -54,10 +58,10 @@ public class Level extends WorkspaceModel{
         return null;
     }
 
-    public void update(double elapsedTime, Dimension bounds) {
+    public void update(double elapsedTime, Dimension bounds, View view) {
         if(myPlayer != null) {
 //            System.out.println("Player Location: " + myPlayer.getCenter());
-            updateFrames();
+            updateFrames(view);
             myPlayer.update(elapsedTime, bounds);
             for(Sprite s: myFrameOfActionSprites) {
                 s.update(elapsedTime, bounds);
@@ -75,17 +79,19 @@ public class Level extends WorkspaceModel{
         }
     }
 
-    private void updateFrames() {
+    private void updateFrames(View view) {
         myFrameOfActionSprites.clear();
         myFrameOfReferenceSprites.clear();
+       frameOfReferenceSize = view.getSize();
+       frameOfActionSize = calcActionFrameSize(view.getSize());
         if(mySprites.size() > 0) {
             for(Sprite s: mySprites) {
 //                System.out.println("Sprite Location: " + s.getCenter());
-                if(checkRange(s, PlatformerConstants.REFERENCE_FRAME_SIZE)) {
+                if(checkRange(s, frameOfReferenceSize)) {
                     myFrameOfReferenceSprites.add(s);
                     myFrameOfActionSprites.add(s);
                 }
-                if(!myFrameOfActionSprites.contains(s) & checkRange(s, PlatformerConstants.ACTION_FRAME_SIZE)) {
+                if(!myFrameOfActionSprites.contains(s) & checkRange(s, frameOfActionSize)) {
                     myFrameOfActionSprites.add(s);
                 }
             }
@@ -105,11 +111,16 @@ public class Level extends WorkspaceModel{
         return true;
     }
     
+    private Dimension calcActionFrameSize(Dimension size) {
+        Dimension temp = new Dimension((int) size.getWidth() + 100, (int) size.getHeight() + 100);
+        return temp;
+    }
+    
     public int getRightBoundary() {
-        return myPlayer.getRightBoundary(PlatformerConstants.DEFAULT_WINDOW_SIZE);
+        return myPlayer.getRightBoundary(frameOfReferenceSize);
     }
     
     public int getLowerBoundary() {
-        return myPlayer.getLowerBoundary(PlatformerConstants.DEFAULT_WINDOW_SIZE);
+        return myPlayer.getLowerBoundary(frameOfReferenceSize);
     }
 }
