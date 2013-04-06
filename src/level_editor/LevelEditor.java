@@ -6,7 +6,6 @@ import java.lang.reflect.Method;
 import util.Location;
 import level_editor.commands.Command;
 import level_editor.commands.CommandLibrary;
-import level_editor.ILevelEditor;
 
 
 /**
@@ -19,7 +18,7 @@ import level_editor.ILevelEditor;
 import util.IModel;
 import util.WorkspaceModel;
 
-public class LevelEditor implements ILevelEditor, IModel {
+public class LevelEditor implements IModel {
 
     public LevelEditor (String language) {
         // TODO Auto-generated constructor stub
@@ -30,7 +29,6 @@ public class LevelEditor implements ILevelEditor, IModel {
     private static final String PARAM_COMMAND_ERROR = "Incorrect Parameters";
     private static final String DEFAULT_COMMAND_ERROR = "Incorrect Command";
     private Editable myLevel;
-    private ILEView myView;
 
     public LevelEditor () {
         myLevel = new Level(0); // TODO Why the id????
@@ -43,8 +41,8 @@ public class LevelEditor implements ILevelEditor, IModel {
      * 
      * @param command - the input from the LEView. 
      */
-    @Override
-    public void processCommand (String command) {
+    
+    private void processCommand (String command) {
         String[] splitCommand = command.split(SPACE);
         String name = splitCommand[0];
         Object[] params = getParams(splitCommand);
@@ -79,6 +77,8 @@ public class LevelEditor implements ILevelEditor, IModel {
     @Override
     public int processCommand (WorkspaceModel m, String cmd) {
         // TODO Auto-generated method stub
+        myLevel = (level) m;
+        processCommand(cmd);
         return 0;
     }
     
