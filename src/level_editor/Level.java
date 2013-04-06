@@ -68,10 +68,7 @@ public class Level extends WorkspaceModel{
     @Override
     public void paint (Graphics2D pen) {
         if(myPlayer != null) {
-            //Changing for a second
-//            for(Sprite s: myFrameOfReferenceSprites) {
-
-            for(Sprite s: mySprites) {
+            for(Sprite s: myFrameOfReferenceSprites) {
                 s.paint(pen,myPlayer.getCenter(), myPlayer.getOriginalCenter());
             }
             myPlayer.paint(pen);
