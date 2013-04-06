@@ -30,7 +30,7 @@ public class Model {
     public Model(View view) {
         myView = view;
         //ONLY USED FOR TESTING
-        myCurrLevel = new Level(1);
+        myCurrLevel = new Level(1, view);
         myCurrLevel.setSize(PlatformerConstants.DEFAULT_LEVEL_SIZE);
         myCurrLevel.addSprite(new Player(new Pixmap("brick9.gif"), 
                                      new Location(myView.getWidth() / 2, myView.getHeight() / 2),
@@ -58,11 +58,11 @@ public class Model {
         myCurrLevel.paint(pen);
     }
     
-    public int getRightBoundary() {
+    public double getRightBoundary() {
         return myCurrLevel.getRightBoundary();
     }
     
-    public int getLowerBoundary() {
+    public double getLowerBoundary() {
         return myCurrLevel.getLowerBoundary();
     }
 }

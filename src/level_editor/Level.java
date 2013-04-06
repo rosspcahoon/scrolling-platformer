@@ -19,12 +19,22 @@ public class Level extends WorkspaceModel{
     private List<Sprite> mySprites;
     private List<Sprite> myFrameOfActionSprites;
     private List<Sprite> myFrameOfReferenceSprites;
+    private View myView;
     
 
     public Level(int id){
         //MIGHT WANT TO INITIALIZE THIS WITH A PLAYER AS WELL
         mySize = PlatformerConstants.DEFAULT_LEVEL_SIZE;
         initFrames();
+    }
+    
+    public Level(int id, View view){
+        //MIGHT WANT TO INITIALIZE THIS WITH A PLAYER AS WELL
+        mySize = PlatformerConstants.DEFAULT_LEVEL_SIZE;
+        initFrames();
+        myView = view;
+        frameOfReferenceSize = myView.getSize();
+        frameOfActionSize = calcActionFrameSize(myView.getSize());
     }
 
     private void initFrames() {
@@ -60,7 +70,7 @@ public class Level extends WorkspaceModel{
 
     public void update(double elapsedTime, Dimension bounds, View view) {
         if(myPlayer != null) {
-//            System.out.println("Player Location: " + myPlayer.getCenter());
+            System.out.println("Player Location: " + myPlayer.getCenter());
             updateFrames(view);
             myPlayer.update(elapsedTime, bounds);
             for(Sprite s: myFrameOfActionSprites) {
@@ -86,7 +96,6 @@ public class Level extends WorkspaceModel{
        frameOfActionSize = calcActionFrameSize(view.getSize());
         if(mySprites.size() > 0) {
             for(Sprite s: mySprites) {
-//                System.out.println("Sprite Location: " + s.getCenter());
                 if(checkRange(s, frameOfReferenceSize)) {
                     myFrameOfReferenceSprites.add(s);
                     myFrameOfActionSprites.add(s);
@@ -116,11 +125,11 @@ public class Level extends WorkspaceModel{
         return temp;
     }
     
-    public int getRightBoundary() {
+    public double getRightBoundary() {
         return myPlayer.getRightBoundary(frameOfReferenceSize);
     }
     
-    public int getLowerBoundary() {
+    public double getLowerBoundary() {
         return myPlayer.getLowerBoundary(frameOfReferenceSize);
     }
 }
