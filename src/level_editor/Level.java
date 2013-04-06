@@ -67,7 +67,7 @@ public class Level extends WorkspaceModel{
     @Override
     public void paint (Graphics2D pen) {
         if(myPlayer != null) {
-            for(Sprite s: myFrameOfActionSprites) {
+            for(Sprite s: myFrameOfReferenceSprites) {
                 s.paint(pen);
             }
             myPlayer.paint(pen);
@@ -93,13 +93,11 @@ public class Level extends WorkspaceModel{
 
     private boolean checkRange(Sprite sprite, Dimension frame) {
         //This is pretty hacky, I am trying to think of a more elegant way
-        //        System.out.println(myPlayer == null);
-        //        double x = myPlayer.getX();
         if(myPlayer == null ||
                 myPlayer.getLeftBoundary(frame) > sprite.getX()
                 || myPlayer.getRightBoundary(frame) < sprite.getX()
-                || myPlayer.getLowerBoundary(frame) > sprite.getY()
-                || myPlayer.getUpperBoundary(frame) < sprite.getY()) {
+                || myPlayer.getLowerBoundary(frame) < sprite.getY()
+                || myPlayer.getUpperBoundary(frame) > sprite.getY()) {
             return false;
         }
         return true;

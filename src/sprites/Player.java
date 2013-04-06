@@ -92,7 +92,7 @@ public class Player extends AbstractCharacter {
         return (int) (this.getX() + frame.getWidth() / 2);
     }
     
-    public int getLeftBoundary(Dimension frame) {        
+    public int getLeftBoundary(Dimension frame) {
         return (int) (this.getX() - frame.getWidth() / 2);
     }
     
@@ -100,7 +100,7 @@ public class Player extends AbstractCharacter {
         return (int) (this.getY() - frame.getHeight() / 2);
     }
     
-    public int getLowerBoundary(Dimension frame) {        
+    public int getLowerBoundary(Dimension frame) { 
         return (int) (this.getY() + frame.getHeight() / 2);
     }
 }
