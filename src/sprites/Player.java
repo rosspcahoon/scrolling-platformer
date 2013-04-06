@@ -86,7 +86,6 @@ public class Player extends AbstractCharacter {
    
     @Override
     public void paint (Graphics2D pen) {
-        System.out.println("Player Orig Location: " + myOriginalCenter);
         myImage.paint(pen, myOriginalCenter, mySize);
     }
     

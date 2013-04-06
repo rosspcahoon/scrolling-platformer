@@ -76,9 +76,22 @@ public class View extends JComponent {
     @Override
     public void paintComponent (Graphics pen) {
         Image img = new ImageIcon(getClass().getResource("/images/forestbackground.jpg")).getImage();
-//        System.out.println("Right Boundary: " + myGame.getRightBoundary() + " Lower Boundary: " + myGame.getLowerBoundary());
-//        System.out.println("Width: " + this.getWidth() + " Height: " + this.getHeight());
-        pen.drawImage(img, this.getWidth() - (int) myGame.getRightBoundary(), (int) this.getHeight() - (int) myGame.getLowerBoundary(), 800, 300, null);
+//        System.out.println("Right Boundary: " + myGame.getRightBoundary() + " Lower Boundary: " + myGame.getLowerBoundary() + " View.java");
+//        System.out.println("Width: " + this.getWidth() + " Height: " + this.getHeight() + " View.java");
+
+        int horizontal = ((int) myGame.getRightBoundary() + this.getWidth()*1000) % this.getWidth();
+        int vertical = ((int) myGame.getLowerBoundary() + this.getHeight()*100) % this.getHeight();
+        System.out.println("Horizontal: " + (int) myGame.getRightBoundary() % this.getWidth() + " View.java");
+        System.out.println("Vertical: " + (int) myGame.getLowerBoundary() % this.getHeight() + " View.java");
+//        if(vertical < 0) {
+//            vertical = -1*(vertical + this.getHeight());
+//        }
+
+            pen.drawImage(img, 0 - horizontal, 0 - vertical, 800, 300, null);
+            pen.drawImage(img, this.getWidth() - horizontal,  0 - vertical, 800, 300, null);
+            pen.drawImage(img, 0 - horizontal,this.getHeight() - vertical, 800, 300, null);
+            pen.drawImage(img, this.getWidth() - horizontal, this.getHeight() - vertical, 800, 300, null);
+        
         // first time needs to be special cased :(
         if (myGame != null) {
             myGame.paint((Graphics2D) pen);

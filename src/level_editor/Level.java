@@ -70,7 +70,7 @@ public class Level extends WorkspaceModel{
 
     public void update(double elapsedTime, Dimension bounds, View view) {
         if(myPlayer != null) {
-            System.out.println("Player Location: " + myPlayer.getCenter());
+//            System.out.println("Player Location: " + myPlayer.getCenter());
             updateFrames(view);
             myPlayer.update(elapsedTime, bounds);
             for(Sprite s: myFrameOfActionSprites) {
