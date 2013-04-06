@@ -21,17 +21,5 @@ public class StaticEnviroPlaceHolder extends AbstractStaticEnvironment {
         myImage = image;
         mySize = size;
     }
-    
-    public void paint (Graphics2D pen, Location loc) {
-        myImage.paint(pen, translate(loc), mySize);
-        
-    }
-    
-    private Location translate(Location loc) {
-         Location temp =  new Location(myCenter.getX()-loc.getX(), myCenter.getY() - loc.getY());
-        
-        return temp;
-    }
-    
 
 }

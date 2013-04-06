@@ -56,6 +56,7 @@ public class Level extends WorkspaceModel{
 
     public void update(double elapsedTime, Dimension bounds) {
         if(myPlayer != null) {
+//            System.out.println("Player Location: " + myPlayer.getCenter());
             updateFrames();
             myPlayer.update(elapsedTime, bounds);
             for(Sprite s: myFrameOfActionSprites) {
@@ -68,7 +69,7 @@ public class Level extends WorkspaceModel{
     public void paint (Graphics2D pen) {
         if(myPlayer != null) {
             for(Sprite s: myFrameOfReferenceSprites) {
-                s.paint(pen);
+                s.paint(pen, myPlayer.getCenter());
             }
             myPlayer.paint(pen);
         }
@@ -79,6 +80,7 @@ public class Level extends WorkspaceModel{
         myFrameOfReferenceSprites.clear();
         if(mySprites.size() > 0) {
             for(Sprite s: mySprites) {
+//                System.out.println("Sprite Location: " + s.getCenter());
                 if(checkRange(s, PlatformerConstants.REFERENCE_FRAME_SIZE)) {
                     myFrameOfReferenceSprites.add(s);
                     myFrameOfActionSprites.add(s);
@@ -93,12 +95,11 @@ public class Level extends WorkspaceModel{
 
     private boolean checkRange(Sprite sprite, Dimension frame) {
         //This is pretty hacky, I am trying to think of a more elegant way
-
         if(myPlayer == null ||
                 myPlayer.getLeftBoundary(frame) > sprite.getX()
                 || myPlayer.getRightBoundary(frame) < sprite.getX()
-                || myPlayer.getLowerBoundary(frame) > sprite.getY()
-                || myPlayer.getUpperBoundary(frame) < sprite.getY()) {
+                || myPlayer.getLowerBoundary(frame) < sprite.getY()
+                || myPlayer.getUpperBoundary(frame) > sprite.getY()) {
             return false;
         }
         return true;

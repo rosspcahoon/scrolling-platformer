@@ -230,6 +230,26 @@ public abstract class Sprite {
     {
         myView.paint(pen, myCenter, mySize);
     }
+    
+    /**
+     * Display this shape translated on the screen, used for all Sprites besides Player
+     */
+    public void paint (Graphics2D pen, Location loc) {
+        myView.paint(pen, translate(loc), mySize);
+        
+    }
+    
+    /**
+     * The translates the the Location with respect to the Location given.
+     * @param loc the Location to translate in relation to
+     * @return the translated Location
+     */
+    
+    private Location translate(Location loc) {
+         Location temp =  new Location(myCenter.getX()-loc.getX(), myCenter.getY() - loc.getY());        
+        return temp;
+    }
+    
 
     /**
      * Returns rectangle that encloses this shape.
