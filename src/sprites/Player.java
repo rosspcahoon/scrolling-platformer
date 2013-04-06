@@ -30,11 +30,14 @@ import view.View;
  */
 public class Player extends AbstractCharacter {
 
-    Graphics2D pen;
+//    Graphics2D pen;
     PlayerCollisionHandler myCollisionHandler;
     List<State> myStates;
     State currentState; 
     View myView;
+    private Location myCenter;
+    private Dimension mySize;
+    private Pixmap myImage;
     
     // Used for testing purposes only
     private static final int MOVE_LEFT = KeyEvent.VK_A;
@@ -50,7 +53,9 @@ public class Player extends AbstractCharacter {
     public Player (Pixmap image, Location center, Dimension size, View view) {
         super(image, center, size);
         myView = view;
-        // TODO Auto-generated constructor stub
+        myCenter = center;
+        mySize = size;
+        myImage = image;
     }
     
     
@@ -79,9 +84,9 @@ public class Player extends AbstractCharacter {
 //        ONLY FOR TESTING
     }
    
-// Not sure if we will need this.
-    public void paint() {
-        //currentState.draw(pen);
+    @Override
+    public void paint (Graphics2D pen) {
+        myImage.paint(pen, myCenter, mySize);
     }
     
     public void changeState(State newState) {

@@ -37,7 +37,7 @@ public class Model {
                                      new Dimension(25, 25),
                                      myView));
         myCurrLevel.addSprite(new StaticEnviroPlaceHolder(new Pixmap("brick10.gif"), 
-                                         new Location(myView.getWidth() / 2 + 25, myView.getHeight() / 2 + 25),
+                                         new Location(myView.getWidth(), myView.getHeight() / 2),
                                          new Dimension(25, 25)));        
         
         //ONLY USED FOR TESTING

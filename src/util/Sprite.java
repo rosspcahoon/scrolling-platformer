@@ -24,9 +24,9 @@ public abstract class Sprite {
     public static final int DOWN_DIRECTION = 90;
 
     // state
-    private Location myCenter;
+    protected Location myCenter;
     private Vector myVelocity;
-    private Dimension mySize;
+    protected Dimension mySize;
     private Pixmap myView;
     // keep copies of the original state so shape can be reset as needed
     private Location myOriginalCenter;
@@ -82,6 +82,13 @@ public abstract class Sprite {
     public void setCenter (double x, double y) {
         myCenter.setLocation(x, y);
         resetBounds();
+    }
+    
+    /**
+     * Returns myCenter
+     */
+    public Location getCenter() {
+        return myCenter;
     }
 
     /**
