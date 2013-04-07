@@ -1,40 +1,22 @@
-package sprites;
+package test_sprites;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.List;
-import abstract_sprites.AbstractPlayer;
+import collision_handlers.CollisionHandler;
 import collision_handlers.Mario_CH;
 import design_patterns.State;
-import test_sprites.Type;
 import util.Location;
 import util.Pixmap;
 import util.Vector;
 import view.View;
+import abstract_sprites.AbstractPlayer;
 
+public class Mario extends AbstractPlayer {
 
-/**
- * Two Design Patterns being used here: Visitor and State. 
- * 
- * Visitor pattern is used to handle collisions. Essentially, whenever
- * a collision is detected, we will call the visit method of myCollisionHandler
- * and pass in the object Player has just collided with. 
- * 
- * State pattern is used to handle the state the Player is in. currenState
- * starts out at a default state. All updating and painting is done on 
- * a state level. This is evinced through the Player's update and paint 
- * methods. 
- * 
- * 
- * @author Jay Wang
- *
- */
-public class Player extends AbstractPlayer {
-
-//    Graphics2D pen;
-    Mario_CH myCollisionHandler;
-    List<State> myStates;
+    private Mario_CH collisionHandler = new Mario_CH();
+    List<State> myStates;    
     State currentState; 
     View myView;
     private Location myOriginalCenter;
@@ -52,13 +34,35 @@ public class Player extends AbstractPlayer {
     private static final Vector UP_VELOCITY = new Vector(UP_DIRECTION, MOVE_SPEED);
     private static final Vector DOWN_VELOCITY = new Vector(DOWN_DIRECTION, MOVE_SPEED);
     
-    public Player (Pixmap image, Location center, Dimension size, View view) {
+    public Mario_CH getCollisionHandler () {
+        System.out.println("NEVER GETTING HERE!");
+        return collisionHandler;
+    }
+
+    public void setCollisionHandler (Mario_CH collisionHandler) {
+        this.collisionHandler = collisionHandler;
+    }
+    
+    public Mario (Pixmap image, Location center, Dimension size, View view) {
         super(image, center, size);
         myView = view;
         myOriginalCenter = center;
         mySize = size;
         myImage = image;
+        // TODO Auto-generated constructor stub
     }
+
+    public void print() {
+        System.out.println("Koopa");
+    }
+    
+    @Override
+    public Type getType() {
+        return Type.MARIO;
+    }
+    
+
+   
     
     
     public void update(double elapsedTime, Dimension bounds) {
@@ -99,23 +103,22 @@ public class Player extends AbstractPlayer {
         return myOriginalCenter;
     }
     
-    public double getRightBoundary(Dimension frame) {
-        return (this.getX() + frame.getWidth() / 2);
+    public int getRightBoundary(Dimension frame) {
+        return (int) (this.getX() + frame.getWidth() / 2);
     }
     
-    public double getLeftBoundary(Dimension frame) {
-        return (this.getX() - frame.getWidth() / 2);
+    public int getLeftBoundary(Dimension frame) {
+        return (int) (this.getX() - frame.getWidth() / 2);
     }
     
-    public double getUpperBoundary(Dimension frame) {
-        return (this.getY() - frame.getHeight() / 2);
+    public int getUpperBoundary(Dimension frame) {
+        return (int) (this.getY() - frame.getHeight() / 2);
     }
     
-    public double getLowerBoundary(Dimension frame) { 
-        return (this.getY() + frame.getHeight() / 2);
-    }
-    
-    public Type getType() {
-        return Type.NONE;
+    public int getLowerBoundary(Dimension frame) { 
+        return (int) (this.getY() + frame.getHeight() / 2);
     }
 }
+
+
+

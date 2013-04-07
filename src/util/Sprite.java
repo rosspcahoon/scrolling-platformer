@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
+import collision_handlers.CollisionHandler;
+import test_sprites.Type;
 
 
 /**
@@ -250,6 +252,13 @@ public abstract class Sprite {
         return temp;
     }
     
+    public Type getType() {
+        return null;
+    }
+    
+    public CollisionHandler getCollisionHandler() {
+        return null;
+    }
 
     /**
      * Returns rectangle that encloses this shape.
