@@ -257,4 +257,5 @@ public abstract class Sprite {
         return 0;
         //return Double.NaN;
     }
+
 }
