@@ -50,6 +50,7 @@ public class SpriteBox implements Renderable {
         myCombinedBoxes.add(nearestBox);
         nearestBox.myCombinedBoxes.add(this);
         nearestBox.setUnavailable();
+        System.out.println("combined");
     }
 
     @Override

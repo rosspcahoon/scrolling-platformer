@@ -2,7 +2,6 @@ package level_editor;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.util.HashSet;
 import java.util.Set;
 import util.Sprite;
@@ -48,12 +47,18 @@ public class SpriteGrid implements Renderable {
             currentBox.addSprite(spr);
             myPaintableBoxes.add(currentBox);
             combineBoxes(currentBox, currentBox, spr.getWidth(), spr.getHeight());
+            System.out.println("added Sprite "+currentBox.getX()+" "+currentBox.getY());
         }
-        ;
+        else{
+            System.out.println("unavailable "+currentBox.getX()+" "+currentBox.getY());
+        }
     }
 
     public void deleteSprite (int x, int y) {
-        nearestBox(x,y).deleteSprite();
+        SpriteBox currentBox = nearestBox(x, y);
+        currentBox.deleteSprite();
+        myPaintableBoxes.remove(currentBox);
+        System.out.println("deleted Sprite");
     }
 
     private boolean checkAvailable (SpriteBox current, double width, double height) {
@@ -86,7 +91,7 @@ public class SpriteGrid implements Renderable {
 
     private SpriteBox nearestBox (double x, double y) {
         int xCoord = (int) Math.round(x / mySpriteSize);
-        int yCoord = (int) Math.round(x / mySpriteSize);
+        int yCoord = (int) Math.round(y / mySpriteSize);
         return myGrid[xCoord][yCoord];
     }
 
