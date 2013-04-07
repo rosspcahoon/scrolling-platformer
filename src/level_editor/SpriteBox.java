@@ -29,10 +29,17 @@ public class SpriteBox implements Renderable {
         mySprite = spr;
         mySprite.setCenter(myBounds.getX() + mySprite.getWidth() / 2,
                            myBounds.getY() + mySprite.getHeight() / 2);
+        setUnavailable();
     }
 
     public void deleteSprite () {
         mySprite = null;
+        setAvailable();
+        for (SpriteBox box : myCombinedBoxes) {
+            box.myCombinedBoxes.remove(this);
+            box.deleteSprite();
+        }
+        myCombinedBoxes = new HashSet<SpriteBox>();
     }
 
     public Sprite getSprite () {
@@ -41,7 +48,8 @@ public class SpriteBox implements Renderable {
 
     public void combineWith (SpriteBox nearestBox) {
         myCombinedBoxes.add(nearestBox);
-        nearestBox.setUnavailble();
+        nearestBox.myCombinedBoxes.add(this);
+        nearestBox.setUnavailable();
     }
 
     @Override
@@ -68,15 +76,15 @@ public class SpriteBox implements Renderable {
     public int getY () {
         return myBounds.y;
     }
-    
-    public boolean isAvailable() {
+
+    public boolean isAvailable () {
         return isAvailable;
     }
 
-    private void setUnavailble () {
+    private void setUnavailable () {
         isAvailable = false;
     }
-    
+
     private void setAvailable () {
         isAvailable = true;
     }

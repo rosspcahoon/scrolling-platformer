@@ -25,6 +25,23 @@ public class SpriteGrid implements Renderable {
         myPaintableBoxes = new HashSet<SpriteBox>();
     }
 
+    public int getSpriteSize () {
+        return mySpriteSize;
+    }
+
+    @Override
+    public Object getState () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void paint (Graphics2D pen) {
+        for (SpriteBox box : myPaintableBoxes) {
+            box.paint(pen);
+        }
+    }
+
     public void addSprite (Sprite spr, int x, int y) {
         SpriteBox currentBox = nearestBox(x, y);
         if (checkAvailable(currentBox, spr.getWidth(), spr.getHeight())) {
@@ -35,17 +52,19 @@ public class SpriteGrid implements Renderable {
         ;
     }
 
+    public void deleteSprite (int x, int y) {
+        nearestBox(x,y).deleteSprite();
+    }
+
     private boolean checkAvailable (SpriteBox current, double width, double height) {
-        if(!current.isAvailable()){
-            return false;
-        }
+        if (!current.isAvailable()) { return false; }
         boolean bool1 = true;
         boolean bool2 = true;
         if (width > mySpriteSize) {
             SpriteBox next = nearestBox(current.getX() + mySpriteSize, current.getY());
             bool1 = checkAvailable(next, width - mySpriteSize, height);
         }
-        if (height > mySpriteSize) {
+        if (height > mySpriteSize && bool1) {
             SpriteBox nextBox = nearestBox(current.getX(), current.getY() + mySpriteSize);
             bool2 = checkAvailable(nextBox, width, height - mySpriteSize);
         }
@@ -59,26 +78,16 @@ public class SpriteGrid implements Renderable {
             combineBoxes(initial, next, width - mySpriteSize, height);
         }
         if (height > mySpriteSize) {
-            SpriteBox nextBox = nearestBox(current.getX(), current.getY() + mySpriteSize);
-            initial.combineWith(nextBox);
-            combineBoxes(initial, nextBox, width, height - mySpriteSize);
+            SpriteBox next = nearestBox(current.getX(), current.getY() + mySpriteSize);
+            initial.combineWith(next);
+            combineBoxes(initial, next, width, height - mySpriteSize);
         }
     }
 
-    @Override
-    public Object getState () {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void paint (Graphics2D pen) {
-        // TODO Auto-generated method stub
-
-    }
-
-    public int getSpriteSize () {
-        return mySpriteSize;
+    private SpriteBox nearestBox (double x, double y) {
+        int xCoord = (int) Math.round(x / mySpriteSize);
+        int yCoord = (int) Math.round(x / mySpriteSize);
+        return myGrid[xCoord][yCoord];
     }
 
     private void initializeGrid () {
@@ -87,12 +96,6 @@ public class SpriteGrid implements Renderable {
                 myGrid[x][y] = new SpriteBox(this, x, y);
             }
         }
-    }
-
-    private SpriteBox nearestBox (double x, double y) {
-        int xCoord = (int) Math.round(x / mySpriteSize);
-        int yCoord = (int) Math.round(x / mySpriteSize);
-        return myGrid[xCoord][yCoord];
     }
 
 }
