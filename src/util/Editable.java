@@ -1,7 +1,5 @@
-package level_editor;
+package util;
 
-import util.Location;
-import util.Sprite;
 
 
 /**

@@ -1,7 +1,8 @@
 package util;
 
+
 public interface IModel {
 
-    int processCommand (WorkspaceModel m, String cmd);
+    int processCommand (Editable m, String cmd);
 
 }

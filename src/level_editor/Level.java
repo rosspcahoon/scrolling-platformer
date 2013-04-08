@@ -3,11 +3,12 @@ package level_editor;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
+import util.Editable;
 import util.Location;
 import util.Sprite;
-import util.WorkspaceModel;
+import viewUtil.Renderable;
 
-public class Level extends WorkspaceModel implements Editable{
+public class Level implements Editable, Renderable {
 
 
     private List<Sprite> mySprites;

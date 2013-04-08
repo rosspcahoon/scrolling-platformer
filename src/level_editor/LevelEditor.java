@@ -17,9 +17,9 @@ import level_editor.commands.CommandLibrary;
  * @author Danny Goodman
  *
  */
+import util.Editable;
 import util.IModel;
 import util.Pixmap;
-import util.WorkspaceModel;
 
 public class LevelEditor implements IModel {
 
@@ -38,7 +38,7 @@ public class LevelEditor implements IModel {
     }
 
     @Override
-    public int processCommand (WorkspaceModel m, String cmd) {
+    public int processCommand (Editable m, String cmd) {
         // TODO Auto-generated method stub
         myLevel = (Level) m;
         processCommand(cmd);

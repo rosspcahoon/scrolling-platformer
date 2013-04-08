@@ -26,6 +26,7 @@ public class LETab extends WorkspaceView implements ILEView {
     }
 
 
+
     @Override
     public int getID () {
         // TODO Auto-generated method stub

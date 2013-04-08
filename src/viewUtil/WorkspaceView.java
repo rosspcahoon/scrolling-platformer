@@ -82,4 +82,8 @@ public abstract class WorkspaceView extends WindowView{
         
     }
 
+    protected void setID (int id) {
+        myID = id;
+    }
+
 }

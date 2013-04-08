@@ -4,6 +4,13 @@ import java.awt.Container;
 import viewUtil.Renderable;
 import viewUtil.WindowView;
 
+/**
+ * EditorView is responsible for presenting editing tools to the user.
+ * It provides a UI for the user to select various kind of sprites or 
+ * environment elements and add them to the actual level being edited.
+ * @author Dagbedji Fagnisse
+ *
+ */
 public class EditorView extends WindowView  implements ILEView {
 
     public EditorView (Container parent) {
