@@ -21,6 +21,7 @@ import javax.swing.JComponent;
 import javax.swing.Timer;
 import sprites.Player;
 import model.Model;
+import model.Model2;
 
 
 /**
@@ -41,7 +42,7 @@ public class View extends JComponent {
     // drives the animation
     private Timer myTimer;
     // game to be animated
-    private Model myGame;
+    private Model2 myGame;
     // input state
     private int myLastKeyPressed;
     private Point myLastMousePosition;
@@ -140,7 +141,7 @@ public class View extends JComponent {
             }
         });
         // start animation
-        myGame = new Model(this);
+        myGame = new Model2(this);
         timer.start();
     }
 

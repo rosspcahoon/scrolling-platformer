@@ -47,10 +47,10 @@ public class Player extends AbstractPlayer {
     private static final int MOVE_UP = KeyEvent.VK_W;
     private static final int MOVE_DOWN = KeyEvent.VK_S;
     private static final int MOVE_SPEED = 10;
-    private static final Vector LEFT_VELOCITY = new Vector(LEFT_DIRECTION, MOVE_SPEED);
-    private static final Vector RIGHT_VELOCITY = new Vector(RIGHT_DIRECTION, MOVE_SPEED);
-    private static final Vector UP_VELOCITY = new Vector(UP_DIRECTION, MOVE_SPEED);
-    private static final Vector DOWN_VELOCITY = new Vector(DOWN_DIRECTION, MOVE_SPEED);
+    public static final Vector LEFT_VELOCITY = new Vector(LEFT_DIRECTION, MOVE_SPEED);
+    public static final Vector RIGHT_VELOCITY = new Vector(RIGHT_DIRECTION, MOVE_SPEED);
+    public static final Vector UP_VELOCITY = new Vector(UP_DIRECTION, MOVE_SPEED);
+    public static final Vector DOWN_VELOCITY = new Vector(DOWN_DIRECTION, MOVE_SPEED);
     
     public Player (Pixmap image, Location center, Dimension size, View view) {
         super(image, center, size);
@@ -66,23 +66,23 @@ public class Player extends AbstractPlayer {
 //        currentState.update();
         // move based on input
 //      ONLY FOR TESTING
-        int key = myView.getLastKeyPressed();
-        if (key == MOVE_LEFT)
-        {
-            translate(LEFT_VELOCITY);
-        }
-        if (key == MOVE_RIGHT)
-        {
-            translate(RIGHT_VELOCITY);
-        }
-        if (key == MOVE_UP)
-        {
-            translate(UP_VELOCITY);
-        }
-        if (key == MOVE_DOWN)
-        {
-            translate(DOWN_VELOCITY);
-        }
+//        int key = myView.getLastKeyPressed();
+//        if (key == MOVE_LEFT)
+//        {
+//            translate(LEFT_VELOCITY);
+//        }
+//        if (key == MOVE_RIGHT)
+//        {
+//            translate(RIGHT_VELOCITY);
+//        }
+//        if (key == MOVE_UP)
+//        {
+//            translate(UP_VELOCITY);
+//        }
+//        if (key == MOVE_DOWN)
+//        {
+//            translate(DOWN_VELOCITY);
+//        }
 //        ONLY FOR TESTING
     }
    

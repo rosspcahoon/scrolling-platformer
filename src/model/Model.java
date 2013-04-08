@@ -44,7 +44,8 @@ public class Model {
      * Create a game of the given size with the given display for its shapes.
      */
     public Model(View view) {
-        setSpriteList(new ArrayList<Sprite>());
+        //setSpriteList(new ArrayList<Sprite>());
+        spriteList = new ArrayList<Sprite>();
         myView = view;
         //ONLY USED FOR TESTING
         myCurrLevel = new Level(1, view);
