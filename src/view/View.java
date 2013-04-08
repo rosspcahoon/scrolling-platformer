@@ -22,8 +22,6 @@ import javax.swing.Timer;
 import scrollingmanager.ScrollingManager;
 import sprites.Player;
 import model.Model;
-import model.Model2;
-import model.Model2;
 
 
 /**
