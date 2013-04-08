@@ -166,9 +166,4 @@ public class Level extends WorkspaceModel implements Editable{
     public void deleteSprite (Location deleteAtLocation) {
         // TODO Auto-generated method stub
     }
-
-    @Override
-    public void setErrorMessage (String errorMessage) {
-        myStatus.setErrorMessage(errorMessage);
-    }
 }

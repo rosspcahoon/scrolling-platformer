@@ -58,8 +58,8 @@ public class SpriteGrid extends WorkspaceModel{
         myPaintableBoxes.remove(currentBox);
     }
     
-    public Editable createLevel(int id){
-        Editable lev = new Level(id);
+    public Level createLevel(int id){
+        Level lev = new Level(id);
         for(SpriteBox box:myPaintableBoxes){
             lev.addNewSprite(box.getSprite());
         }
