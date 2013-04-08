@@ -4,6 +4,7 @@ import input.AlertObject;
 import input.Input;
 import input.InputClassTarget;
 import input.InputMethodTarget;
+import input.PositionObject;
 import javax.swing.JComponent;
 import sprites.Player;
 
@@ -75,6 +76,11 @@ public class ModelInputs {
     @InputMethodTarget(name = "down")
     public void downInput (AlertObject alObj) {
         myPlayer.translate(Player.DOWN_VELOCITY);
+    }
+    
+    @InputMethodTarget(name="test")
+    public void movementCoordTest(PositionObject posObj) {
+        myPlayer.setCenter(posObj.getX(), posObj.getY());
     }
 
 }

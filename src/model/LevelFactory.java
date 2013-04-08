@@ -30,6 +30,9 @@ public class LevelFactory {
     public List<Level> generateLevels (ScrollingManager myScrollingManager, View view) {
         Level myCurrLevel = new Level(1, myScrollingManager, view);
         
+        // TODO: this will ideally read in levels from file and create instances of each level
+        // This works for demos
+        
         myCurrLevel.addSprite(new Coin(new Pixmap("coin.gif"), 
                                 new Location(view.getWidth() - 400, view.getHeight() - 250),
                                 new Dimension(30, 30)));   
