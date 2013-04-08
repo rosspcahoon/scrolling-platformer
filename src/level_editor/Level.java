@@ -23,6 +23,7 @@ public class Level extends WorkspaceModel implements Editable{
     private List<Sprite> myFrameOfReferenceSprites;
     private View myView;
     private Status myStatus;
+    private SpriteGrid mySpriteGrid;
 
     public Level(int id, ScrollingManager sm){
 

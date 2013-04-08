@@ -23,6 +23,7 @@ import viewUtil.WorkspaceView;
 
 public class LEController {
 
+    private static final int DEFAULT_SIZE = 10;
     private Window myView;
     private IModel myModel;
     private Map<WorkspaceModel, WorkspaceView> myWorkspace2Tab;
@@ -113,7 +114,7 @@ public class LEController {
      * @param id
      */
     private void initializeWorkspace (int id) {
-        WorkspaceModel m = new Level(id, myScrollingManager);
+        WorkspaceModel m = new SpriteGrid(DEFAULT_SIZE,DEFAULT_SIZE);
         WorkspaceView associatedTab = new LETab(id, myView);
         myWorkspace2Tab.put(m, associatedTab);
         myTab2Workspace.put(associatedTab, m);
