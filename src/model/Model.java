@@ -2,15 +2,8 @@ package model;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import collision_handlers.Coin_CH;
-import collision_handlers.Koopa_CH;
-import collision_handlers.Mario_CH;
-import collision_handlers.Platform_CH;
-import collision_handlers.Turtle_CH;
 import sprites.Player;
 import sprites.Test_S_One;
 import test_sprites.Coin;
@@ -18,7 +11,6 @@ import test_sprites.Koopa;
 import test_sprites.Mario;
 import test_sprites.Platform;
 import test_sprites.Turtle;
-import test_sprites.Type;
 import util.Location;
 import util.Pixmap;
 import util.PlatformerConstants;
@@ -50,19 +42,16 @@ public class Model {
         myCurrLevel = new Level(1, view);
         myCurrLevel.setSize(PlatformerConstants.DEFAULT_LEVEL_SIZE);
 
-        spriteList.add(new Player(new Pixmap("brick9.gif"), 
-                                  new Location(myView.getWidth() / 2, myView.getHeight() / 2),
-                                  new Dimension(25, 25),
-                                  myView));
+//        spriteList.add(new Player(new Pixmap("brick9.gif"), 
+//                                  new Location(myView.getWidth() / 2, myView.getHeight() / 2),
+//                                  new Dimension(25, 25),
+//                                  myView));
 
         spriteList.add(new Test_S_One(new Pixmap("brick10.gif"), 
                                       new Location(myView.getWidth() - 100, myView.getHeight() - 100),
                                       new Dimension(25, 25))); 
 
-        spriteList.add(new Mario(new Pixmap("mario.gif"), 
-                                 new Location(myView.getWidth() / 2, myView.getHeight() / 2),
-                                 new Dimension(30, 60),
-                                 myView));     
+   
 
         spriteList.add(new Coin(new Pixmap("coin.gif"), 
                                 new Location(myView.getWidth() - 400, myView.getHeight() - 250),
@@ -84,7 +73,10 @@ public class Model {
         for (Sprite sprite : spriteList) {
             myCurrLevel.addSprite(sprite);
         }
-
+            myCurrLevel.addPlayer(new Mario(new Pixmap("mario.gif"), 
+                                 new Location(myView.getWidth() / 2, myView.getHeight() / 2),
+                                 new Dimension(30, 60),
+                                 myView));
 
         //ONLY USED FOR TESTING
     }

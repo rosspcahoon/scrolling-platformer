@@ -49,19 +49,16 @@ public class Level extends WorkspaceModel implements Editable{
         mySize = size;
     }
     /**
-     * Adds a sprite to the level. If the Sprite is a player,
-     *  it will set it to the current player.
+     * Adds a sprite to the level.
      * @param s the Sprite to be added
      */
 
     public void addSprite(Sprite s){
-
-        if(s.getClass().getName().equals("sprites.Player")) {
-            myPlayer = (Player) s;
-        }
-        else {
             mySprites.add(s);
-        }
+    }
+    
+    public void addPlayer(Player s) {
+        myPlayer = s;
     }
 
     //Methods from Renderable Interface. To be called by View components.  
@@ -113,10 +110,10 @@ public class Level extends WorkspaceModel implements Editable{
     private boolean checkRange(Sprite sprite, Dimension frame) {
         //This is pretty hacky, I am trying to think of a more elegant way
         if(myPlayer == null ||
-                myPlayer.getLeftBoundary(frame) > sprite.getX()
-                || myPlayer.getRightBoundary(frame) < sprite.getX()
-                || myPlayer.getLowerBoundary(frame) < sprite.getY()
-                || myPlayer.getUpperBoundary(frame) > sprite.getY()) {
+                getLeftBoundary() > sprite.getX()
+                || getRightBoundary() < sprite.getX()
+                || getLowerBoundary() < sprite.getY()
+                || getUpperBoundary() > sprite.getY()) {
             return false;
         }
         return true;
@@ -126,27 +123,28 @@ public class Level extends WorkspaceModel implements Editable{
         Dimension temp = new Dimension((int) size.getWidth() + 100, (int) size.getHeight() + 100);
         return temp;
     }
-
+    
     public double getRightBoundary() {
-        return myPlayer.getRightBoundary(frameOfReferenceSize);
+        return (myPlayer.getX() + frameOfReferenceSize.getWidth() / 2);
     }
-
-
+    
     public double getLeftBoundary() {
-        return myPlayer.getLeftBoundary(frameOfReferenceSize);
+        return (myPlayer.getX() - frameOfReferenceSize.getWidth() / 2);
     }
-
+    
     public double getUpperBoundary() {
-        return myPlayer.getUpperBoundary(frameOfReferenceSize);
+        return (myPlayer.getY() - frameOfReferenceSize.getHeight() / 2);
     }
-
-    public double getLowerBoundary() {
-        return myPlayer.getLowerBoundary(frameOfReferenceSize);
+    
+    public double getLowerBoundary() { 
+        return (myPlayer.getY() + frameOfReferenceSize.getHeight() / 2);
     }
 
     public Dimension getLevelBounds() {
         return mySize;
     }
+    
+    
 
     //Methods from Editable Interface. Methods called by LevelEditor.
 
