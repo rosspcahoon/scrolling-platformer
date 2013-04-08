@@ -22,6 +22,7 @@ import javax.swing.Timer;
 import scrollingmanager.ScrollingManager;
 import sprites.Player;
 import model.Model;
+import model.Model;
 
 
 /**
@@ -142,6 +143,7 @@ public class View extends JComponent {
             }
         });
         // start animation
+
         myGame = new Model(this, myScrollingManager);
         timer.start();
     }
