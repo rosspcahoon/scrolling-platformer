@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import util.Editable;
-import scrollingmanager.ScrollingManager;
-import util.IView;
-import util.IWindow;
+import viewUtil.IWindow;
 import viewUtil.Renderable;
 import viewUtil.WorkspaceView;
 
@@ -34,10 +32,10 @@ public class LEController {
     /**
      * Constructor
      */
-    public LEController() {
+    public LEController(SpriteLibrary lib) {
         String language = getLanguage();
-        myModel = new LevelEditor(language);
-        myView = new LEView(language, this);
+        myModel = new LevelEditor(language,lib);
+        myView = new LEView(language, this, lib);
         myWorkspace2Tab = new HashMap<Editable, WorkspaceView>();
         myTab2Workspace = new HashMap<WorkspaceView, Editable>();
     }

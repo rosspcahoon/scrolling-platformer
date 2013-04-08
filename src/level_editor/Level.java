@@ -23,7 +23,6 @@ public class Level implements Editable, Renderable {
     private List<Sprite> myFrameOfActionSprites;
     private List<Sprite> myFrameOfReferenceSprites;
     private View myView;
-    private Status myStatus;
     private ScrollingManager myScrollManager;
 
     public Level(int id, ScrollingManager sm){
@@ -72,8 +71,9 @@ public class Level implements Editable, Renderable {
     //Methods from Renderable Interface. To be called by View components.  
 
     @Override
-    public Status getState () {
-        return myStatus;
+    public Object getState () {
+        //TODO auto-generated.
+        return null;
     }
 
     public void update(double elapsedTime, Dimension bounds, View view) {

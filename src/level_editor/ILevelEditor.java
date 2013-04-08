@@ -17,6 +17,5 @@ public interface ILevelEditor {
 
     
     public void processCommand (Editable m, String cmd);
-
     
 }

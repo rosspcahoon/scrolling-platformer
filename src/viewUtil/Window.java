@@ -16,8 +16,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JTabbedPane;
 import level_editor.LEController;
-import util.IView;
-import util.IWindow;
 import viewUtil.Renderable;
 
 /**

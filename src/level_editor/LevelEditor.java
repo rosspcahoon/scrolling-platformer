@@ -18,7 +18,7 @@ import level_editor.commands.CommandLibrary;
  *
  */
 import util.Editable;
-import util.IView;
+import viewUtil.IView;
 
 public class LevelEditor implements ILevelEditor {
 
@@ -30,12 +30,12 @@ public class LevelEditor implements ILevelEditor {
     private ScrollingManager myScrollingManager;
     private LEGrid mySpriteGrid;
 
-    public LevelEditor () {
+    public LevelEditor (SpriteLibrary lib) {
         myLevel = new Level(1, myScrollingManager); 
     }
 
-    public LevelEditor (String language) {
-        this();
+    public LevelEditor (String language, SpriteLibrary lib) {
+        this(lib);
     }
 
     @Override

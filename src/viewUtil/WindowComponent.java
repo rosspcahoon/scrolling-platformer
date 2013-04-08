@@ -3,7 +3,6 @@ import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JPanel;
-import util.IView;
 
 /**
  * This class is responsible for refining JPanel and 
