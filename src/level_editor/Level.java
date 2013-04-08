@@ -34,7 +34,7 @@ public class Level implements Editable, Renderable {
     }
     
     public Level(int id){
-        //TODO this(id,default scrolling manager);
+        //this(id,new DefaultScrollingManager());
     }
 
     public Level(int id, ScrollingManager sm, View view){
