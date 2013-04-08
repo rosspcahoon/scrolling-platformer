@@ -3,6 +3,7 @@ package level_editor;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import scrollingmanager.ScrollingManager;
 import level_editor.commands.Command;
 import level_editor.commands.CommandLibrary;
 
@@ -14,8 +15,8 @@ import level_editor.commands.CommandLibrary;
  * @author Danny Goodman
  *
  */
+import util.Editable;
 import util.IModel;
-import util.WorkspaceModel;
 
 public class LevelEditor implements IModel {
 
@@ -24,10 +25,11 @@ public class LevelEditor implements IModel {
     private static final String PARAM_COMMAND_ERROR = "Incorrect Parameters";
     private static final String DEFAULT_COMMAND_ERROR = "Incorrect Command";
     private Editable myLevel;
+    private ScrollingManager myScrollingManager;
     private SpriteGrid mySpriteGrid;
 
     public LevelEditor () {
-        myLevel = new Level(1); 
+        myLevel = new Level(1, myScrollingManager); 
     }
 
     public LevelEditor (String language) {
@@ -35,7 +37,7 @@ public class LevelEditor implements IModel {
     }
 
     @Override
-    public int processCommand (WorkspaceModel m, String cmd) {
+    public int processCommand (Editable m, String cmd) {
         // TODO Auto-generated method stub
         mySpriteGrid = (SpriteGrid) m;
         processCommand(cmd);

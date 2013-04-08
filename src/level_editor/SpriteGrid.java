@@ -4,17 +4,21 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.HashSet;
 import java.util.Set;
+import scrollingmanager.ScrollingManager;
+import util.Editable;
+import util.Location;
 import util.Sprite;
-import util.WorkspaceModel;
+import viewUtil.Renderable;
 
 
-public class SpriteGrid extends WorkspaceModel{
+public class SpriteGrid implements Editable, Renderable{
 
     private static final int DEFAULT_SPRITE_SIZE = 25;
     private int mySpriteSize;
     private SpriteBox[][] myGrid;
     private Dimension mySize;
     private Set<SpriteBox> myPaintableBoxes;
+    private ScrollingManager myScrollingManager;
 
     public SpriteGrid (int x, int y) {
         mySpriteSize = DEFAULT_SPRITE_SIZE;
@@ -106,6 +110,24 @@ public class SpriteGrid extends WorkspaceModel{
                 myGrid[x][y] = new SpriteBox(this, x, y);
             }
         }
+    }
+
+    @Override
+    public void changeBackground () {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void addNewSprite (Sprite s) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void deleteSprite (Location deleteAtLocation) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

@@ -4,14 +4,16 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
+import util.Editable;
 import util.Location;
 import util.Sprite;
-import util.WorkspaceModel;
+import viewUtil.Renderable;
+import scrollingmanager.ScrollingManager;
 import sprites.Player;
 import util.PlatformerConstants;
 import view.View;
 
-public class Level extends WorkspaceModel implements Editable{
+public class Level implements Editable, Renderable {
 
     private Dimension mySize;
     private Dimension frameOfReferenceSize;
@@ -24,14 +26,18 @@ public class Level extends WorkspaceModel implements Editable{
     private Status myStatus;
     private SpriteGrid mySpriteGrid;
 
-    public Level(int id){
+    public Level(int id, ScrollingManager sm){
 
         //MIGHT WANT TO INITIALIZE THIS WITH A PLAYER AS WELL
         mySize = PlatformerConstants.DEFAULT_LEVEL_SIZE;
         initFrames();
     }
+    
+    public Level(int id){
+        //TODO this(id,default scrolling manager);
+    }
 
-    public Level(int id, View view){
+    public Level(int id, ScrollingManager sm, View view){
         //MIGHT WANT TO INITIALIZE THIS WITH A PLAYER AS WELL
         mySize = PlatformerConstants.DEFAULT_LEVEL_SIZE;
         initFrames();
@@ -50,19 +56,16 @@ public class Level extends WorkspaceModel implements Editable{
         mySize = size;
     }
     /**
-     * Adds a sprite to the level. If the Sprite is a player,
-     *  it will set it to the current player.
+     * Adds a sprite to the level.
      * @param s the Sprite to be added
      */
 
     public void addSprite(Sprite s){
-
-        if(s.getClass().getName().equals("sprites.Player")) {
-            myPlayer = (Player) s;
-        }
-        else {
             mySprites.add(s);
-        }
+    }
+    
+    public void addPlayer(Player s) {
+        myPlayer = s;
     }
 
     //Methods from Renderable Interface. To be called by View components.  
@@ -114,10 +117,10 @@ public class Level extends WorkspaceModel implements Editable{
     private boolean checkRange(Sprite sprite, Dimension frame) {
         //This is pretty hacky, I am trying to think of a more elegant way
         if(myPlayer == null ||
-                myPlayer.getLeftBoundary(frame) > sprite.getX()
-                || myPlayer.getRightBoundary(frame) < sprite.getX()
-                || myPlayer.getLowerBoundary(frame) < sprite.getY()
-                || myPlayer.getUpperBoundary(frame) > sprite.getY()) {
+                getLeftBoundary() > sprite.getX()
+                || getRightBoundary() < sprite.getX()
+                || getLowerBoundary() < sprite.getY()
+                || getUpperBoundary() > sprite.getY()) {
             return false;
         }
         return true;
@@ -127,27 +130,28 @@ public class Level extends WorkspaceModel implements Editable{
         Dimension temp = new Dimension((int) size.getWidth() + 100, (int) size.getHeight() + 100);
         return temp;
     }
-
+    
     public double getRightBoundary() {
-        return myPlayer.getRightBoundary(frameOfReferenceSize);
+        return (myPlayer.getX() + frameOfReferenceSize.getWidth() / 2);
     }
-
-
+    
     public double getLeftBoundary() {
-        return myPlayer.getLeftBoundary(frameOfReferenceSize);
+        return (myPlayer.getX() - frameOfReferenceSize.getWidth() / 2);
     }
-
+    
     public double getUpperBoundary() {
-        return myPlayer.getUpperBoundary(frameOfReferenceSize);
+        return (myPlayer.getY() - frameOfReferenceSize.getHeight() / 2);
     }
-
-    public double getLowerBoundary() {
-        return myPlayer.getLowerBoundary(frameOfReferenceSize);
+    
+    public double getLowerBoundary() { 
+        return (myPlayer.getY() + frameOfReferenceSize.getHeight() / 2);
     }
 
     public Dimension getLevelBounds() {
         return mySize;
     }
+    
+    
 
     //Methods from Editable Interface. Methods called by LevelEditor.
 

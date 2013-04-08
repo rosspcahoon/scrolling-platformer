@@ -10,9 +10,9 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
-import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JTabbedPane;
 import level_editor.LEController;
@@ -25,7 +25,7 @@ import viewUtil.Renderable;
  *
  */
 @SuppressWarnings("serial")
-public class Window extends JFrame implements IWindow {
+public abstract class Window extends JFrame implements IWindow {
 
     private static ResourceBundle ourResources;
     private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
@@ -52,11 +52,14 @@ public class Window extends JFrame implements IWindow {
         ourResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
         //tabs
-        getContentPane().setLayout(new GridBagLayout());       
+        getContentPane().setLayout(new GridBagLayout());
+        setMenu();
         addComponents();
         pack();
         setVisible(true);
     }    
+
+    protected abstract void setMenu ();
 
     /**
      * Way to initialize tab creation from the window
@@ -66,10 +69,13 @@ public class Window extends JFrame implements IWindow {
     }
 
     private void addComponents() {
-        myMenuBar = new MenuBarView(this);
         myTabbedPane = new JTabbedPane();
         setJMenuBar(myMenuBar);
         EasyGridFactory.layoutHorizontal(this, myTabbedPane);
+    }
+
+    protected void setMenu (JMenuBar menu) {
+        myMenuBar = menu;
     }
 
     /**
@@ -221,61 +227,5 @@ public class Window extends JFrame implements IWindow {
      */
     public void redo () {
         getActiveTab().redo();
-    }
-    
-    
-    
-    /**
-     * TODO: refactor the part below as they are specific to SLogo and not to the window
-     * maybe it would make sense to have them being required by setting the window to
-     * implement an interface, and ensuring that the implementation is delegated to 
-     * some component of the window.
-     */
-    
-    /**
-     * Set the turtle shape
-     */
-    public void setTurtleShape () {
-        int response = myChooser.showOpenDialog(null);
-        if (response == JFileChooser.APPROVE_OPTION) {
-            String imgURL = myChooser.getSelectedFile().getAbsolutePath();
-            WorkspaceView temp = (WorkspaceView) myTabbedPane.getSelectedComponent();
-            if (temp != null) {
-                return;
-            }
-            int last = registerTurtleShape(imgURL);
-            setTurtleShape(last);
-        }
-    }
-
-    private void setTurtleShape (int i) {
-        WorkspaceView temp = (WorkspaceView) myTabbedPane.getSelectedComponent();
-        processCommand(temp, "setshape " + i);
-    }
-
-    private int registerTurtleShape (String imgURL) {
-        return processCommand(
-                     getLiteral("COMMAND_NAME_REGISTER_SHAPE") + " " + imgURL);
-    }
-    
-    /**
-     * Change the color of the pen
-     */
-    public void changePenColor() {
-        Color result = JColorChooser.showDialog(this, getLiteral("ChangePenColor"), 
-                                                getCurrentPenColor());
-        int pos = processCommand(getLiteral("COMMAND_NAME_LAST_PEN_COLOR_INDEX"));
-        processCommand(getLiteral("COMMAND_NAME_SET_PALETTE") +
-                                 " " + pos + " " 
-                                 + result.getRed() + " "
-                                 + result.getGreen() + " "
-                                 + result.getBlue());
-        processCommand(getLiteral("COMMAND_NAME_SET_PEN_COLOR") + " " + pos);
-    }
-
-    @Override
-    public void addWorkspace (WorkspaceView associatedTab, Renderable r) {
-        // TODO Auto-generated method stub
-        
     }
 }

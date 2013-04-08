@@ -4,29 +4,33 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import util.Editable;
+import scrollingmanager.ScrollingManager;
 import util.IModel;
-import util.WorkspaceModel;
+import util.IWindow;
 import viewUtil.Renderable;
-import viewUtil.Window;
 import viewUtil.WorkspaceView;
 
 /**
  * The controller is responsible for interfacing between an IView and an IModel.
- * Among other things, it is responsible for handling events from the IView, and
- * ensuring that the model components are kept in sync.
- * Moreover, it is responsible for keeping track of the mapping between models of the
- * workspace and their view.
- * @author SLogo team 3
+ * Among other things, it is responsible for 
+ * <LI> Instantiating a generic model and a view
+ * <LI> Keeping track of multiple high-level domain-specific objects (eg. Room, Level...)
+ * <LI> Send Renderable versions to the adequate IView workspace
+ * <LI> Send Editable versions to the Model
+ * <LI> Ensuring that all high-level domain instances are kept in sync.
+ * @author SLogo team 3, Dagbedji F.
  *
  */
 
 public class LEController {
 
-    private static final int DEFAULT_SIZE = 10;
-    private Window myView;
+    private IWindow myView;
     private IModel myModel;
-    private Map<WorkspaceModel, WorkspaceView> myWorkspace2Tab;
-    private Map<WorkspaceView, WorkspaceModel> myTab2Workspace;
+    private Map<Editable, WorkspaceView> myWorkspace2Tab;
+    private Map<WorkspaceView, Editable> myTab2Workspace;
+    private static final int DEFAULT_SPRITE_GRID_SIZE = 10;
+    private ScrollingManager myScrollingManager;
 
     /**
      * Constructor
@@ -34,9 +38,9 @@ public class LEController {
     public LEController() {
         String language = getLanguage();
         myModel = new LevelEditor(language);
-        myView = new LEView("Level Editor", language, this);
-        myWorkspace2Tab = new HashMap<WorkspaceModel, WorkspaceView>();
-        myTab2Workspace = new HashMap<WorkspaceView, WorkspaceModel>();
+        myView = new LEView(language, this);
+        myWorkspace2Tab = new HashMap<Editable, WorkspaceView>();
+        myTab2Workspace = new HashMap<WorkspaceView, Editable>();
     }
 
     private String getLanguage () {
@@ -75,11 +79,11 @@ public class LEController {
      * @param t
      * @return
      */
-    private WorkspaceModel getModelForWorkspace (WorkspaceView v) {
+    private Editable getModelForWorkspace (WorkspaceView v) {
         return myTab2Workspace.get(v);
     }
 
-    private WorkspaceView getViewForWorkspace (WorkspaceModel m) {
+    private WorkspaceView getViewForWorkspace (Editable m) {
         return myWorkspace2Tab.get(m);
     }
 
@@ -91,7 +95,7 @@ public class LEController {
      * @return ret - return int from command process
      */
     public int processCommand (WorkspaceView t, String cmd) {
-        WorkspaceModel m = getModelForWorkspace(t);
+        Editable m = getModelForWorkspace(t);
         int ret = myModel.processCommand(m, cmd);
         t.setRenderable((Renderable) m);
         return ret;
@@ -112,12 +116,11 @@ public class LEController {
      * @param id
      */
     private void initializeWorkspace (int id) {
-        WorkspaceModel m = new SpriteGrid(DEFAULT_SIZE,DEFAULT_SIZE);
-        WorkspaceView associatedTab = new LETab(id, myView);
-        myWorkspace2Tab.put(m, associatedTab);
-        myTab2Workspace.put(associatedTab, m);
-        myView.addWorkspace(associatedTab, (Renderable) m);
-        
+        Editable m = new SpriteGrid(DEFAULT_SPRITE_GRID_SIZE,DEFAULT_SPRITE_GRID_SIZE);;
+        WorkspaceView associatedWorkspaceView = myView.initializeWorkspaceView(id);
+        myWorkspace2Tab.put(m, associatedWorkspaceView);
+        myTab2Workspace.put(associatedWorkspaceView, m);
+        myView.showWorkspace(associatedWorkspaceView, (Renderable) m);
     }
 
 }

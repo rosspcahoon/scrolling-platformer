@@ -1,10 +1,14 @@
 package level_editor;
 
 /**
- * Interface between LevelEditor and LEView. LEView can only pass a command to the 
- * LevelEditor.
+ * Interface between a LevelEditor model and a Level Editor view.
+ * This interface defines the behavior that any external component should
+ * expect from a Level Editor entity (domain-specific).
  * 
- * @author Danny Goodman
+ *  
+ * Initial implementation: View can only pass a command to the LevelEditor.
+ * 
+ * @author Danny Goodman, Dagbedji Fagnisse
  *
  */
 public interface ILevelEditor {

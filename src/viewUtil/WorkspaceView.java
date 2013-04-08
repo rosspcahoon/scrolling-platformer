@@ -10,7 +10,12 @@ import util.IWindow;
 import viewUtil.ViewConstants;
 import viewUtil.Window;
 
-
+/**
+ * A workspace is an entity with at least a space for a Renderable 
+ * and a set of tools for interacting with that Renderable.
+ * @author Dagbedji Fagnisse
+ *
+ */
 public abstract class WorkspaceView extends WindowView{
 
     /**
@@ -22,7 +27,6 @@ public abstract class WorkspaceView extends WindowView{
     private Window myWindow;
     @SuppressWarnings("unused")
     private GridBagConstraints myConstraints;
-    private Renderable myRenderable;
     private Dimension mySize = ViewConstants.DEFAULT_TAB_SIZE;
 
     public WorkspaceView (Container hostWindow) {
@@ -40,9 +44,7 @@ public abstract class WorkspaceView extends WindowView{
         myID = id; 
     }
 
-    public void setRenderable (Renderable r) {
-        myRenderable = r;
-    }
+    public abstract void setRenderable(Renderable r);
     
     /**
      * Get the ID for this component
@@ -81,5 +83,17 @@ public abstract class WorkspaceView extends WindowView{
         // TODO Auto-generated method stub
         
     }
+
+    protected void setID (int id) {
+        myID = id;
+    }
+    
+    /**
+     * Take in a string and send it to Window to process it as a command.
+     * @param s The string to be parsed.
+     */
+    public void processConsoleInput (String s) {
+        myWindow.processCommand(this, s);
+    } 
 
 }

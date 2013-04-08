@@ -11,8 +11,13 @@ import viewUtil.WorkspaceView;
  * @author Dagbedji Fagnisse
  *
  */
-public class LETab extends WorkspaceView implements ILEView {
-    private LevelView myLevelView;
+public class LETab extends WorkspaceView implements ILEView, ILevelEditor{
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private Renderable myRenderable;
+    private LevelGridView myLevelView;
     private EditorView myEditorView;
 
     public LETab (Container host) {
@@ -26,6 +31,7 @@ public class LETab extends WorkspaceView implements ILEView {
     }
 
 
+
     @Override
     public int getID () {
         // TODO Auto-generated method stub
@@ -35,21 +41,34 @@ public class LETab extends WorkspaceView implements ILEView {
     @Override
     protected void initializeVariables () {
         // TODO Auto-generated method stub
-        myLevelView = new LevelView(this);
+        myLevelView = new LevelGridView(this);
         myEditorView = new EditorView(this);
     }
 
     @Override
     protected void addComponents () {
-        // TODO Auto-generated method stub
-        EasyGridFactory.layoutVertical(this, myLevelView, myEditorView);
-//        System.out.println("here");
+        // TODO Add other comp.
+        EasyGridFactory.layoutVertical(this, myLevelView);
     }
 
     @Override
     public void render (Renderable r) {
-        // TODO Auto-generated method stub
+        // TODO Auto-generated method stub !!!
         myLevelView.render(r);
+    }
+
+    @Override
+    public void setRenderable (Renderable r) {
+        // TODO Auto-generated method stub
+        myRenderable = r;
+//        myRenderableHistory.add(renderableRoom);
+        render(myRenderable);
+    }
+
+    @Override
+    public void processCommand (String command) {
+        // TODO - Need to refactor
+        super.processConsoleInput(command);
     }
 
 }

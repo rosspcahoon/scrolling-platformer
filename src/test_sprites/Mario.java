@@ -7,13 +7,14 @@ import java.util.List;
 import collision_handlers.CollisionHandler;
 import collision_handlers.Mario_CH;
 import design_patterns.State;
+import sprites.Player;
 import util.Location;
 import util.Pixmap;
 import util.Vector;
 import view.View;
 import abstract_sprites.AbstractPlayer;
 
-public class Mario extends AbstractPlayer {
+public class Mario extends Player {
 
     private Mario_CH collisionHandler = new Mario_CH();
     List<State> myStates;    
@@ -43,7 +44,7 @@ public class Mario extends AbstractPlayer {
     }
     
     public Mario (Pixmap image, Location center, Dimension size, View view) {
-        super(image, center, size);
+        super(image, center, size, view);
         myView = view;
         myOriginalCenter = center;
         mySize = size;
@@ -89,33 +90,8 @@ public class Mario extends AbstractPlayer {
 //        ONLY FOR TESTING
     }
    
-    @Override
-    public void paint (Graphics2D pen) {
-        myImage.paint(pen, myOriginalCenter, mySize);
-    }
-    
     public void changeState(State newState) {
         currentState = newState;
-    }
-    
-    public Location getOriginalCenter() {
-        return myOriginalCenter;
-    }
-    
-    public int getRightBoundary(Dimension frame) {
-        return (int) (this.getX() + frame.getWidth() / 2);
-    }
-    
-    public int getLeftBoundary(Dimension frame) {
-        return (int) (this.getX() - frame.getWidth() / 2);
-    }
-    
-    public int getUpperBoundary(Dimension frame) {
-        return (int) (this.getY() - frame.getHeight() / 2);
-    }
-    
-    public int getLowerBoundary(Dimension frame) { 
-        return (int) (this.getY() + frame.getHeight() / 2);
     }
 }
 
