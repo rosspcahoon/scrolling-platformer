@@ -129,7 +129,20 @@ public class Level extends WorkspaceModel{
         return myPlayer.getRightBoundary(frameOfReferenceSize);
     }
     
+    
+    public double getLeftBoundary() {
+        return myPlayer.getLeftBoundary(frameOfReferenceSize);
+    }
+    
+    public double getUpperBoundary() {
+        return myPlayer.getUpperBoundary(frameOfReferenceSize);
+    }
+    
     public double getLowerBoundary() {
         return myPlayer.getLowerBoundary(frameOfReferenceSize);
+    }
+    
+    public Dimension getLevelBounds() {
+        return mySize;
     }
 }

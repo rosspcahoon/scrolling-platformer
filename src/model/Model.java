@@ -2,13 +2,11 @@ package model;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.util.List;
 import sprites.Player;
 import sprites.StaticEnviroPlaceHolder;
 import util.Location;
 import util.Pixmap;
 import util.PlatformerConstants;
-import util.Sprite;
 import view.View;
 import level_editor.Level;
 
@@ -19,7 +17,7 @@ import level_editor.Level;
  * @author Ross Cahoon
  */
 public class Model {
-   // private List<Level> myLevels;
+//    private List<Level> myLevels;
     private Level myCurrLevel;
     private View myView;
 
@@ -62,7 +60,19 @@ public class Model {
         return myCurrLevel.getRightBoundary();
     }
     
+    public double getLeftBoundary() {
+        return myCurrLevel.getLeftBoundary();
+    }
+    
+    public double getUpperBoundary() {
+        return myCurrLevel.getUpperBoundary();
+    }
+    
     public double getLowerBoundary() {
         return myCurrLevel.getLowerBoundary();
+    }
+    
+    public Dimension getLevelBounds() {
+        return myCurrLevel.getLevelBounds();
     }
 }
