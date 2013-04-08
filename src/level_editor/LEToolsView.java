@@ -1,8 +1,9 @@
 package level_editor;
 
 import java.awt.Container;
+import util.IView;
 import viewUtil.Renderable;
-import viewUtil.WindowView;
+import viewUtil.WindowComponent;
 
 /**
  * EditorView is responsible for presenting editing tools to the user.
@@ -11,9 +12,9 @@ import viewUtil.WindowView;
  * @author Dagbedji Fagnisse
  *
  */
-public class EditorView extends WindowView  implements ILEView {
+public class LEToolsView extends WindowComponent {
 
-    public EditorView (Container parent) {
+    public LEToolsView (IView parent) {
         super(parent);
         // TODO Auto-generated constructor stub
     }

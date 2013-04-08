@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import util.Editable;
 import scrollingmanager.ScrollingManager;
-import util.IModel;
+import util.IView;
 import util.IWindow;
 import viewUtil.Renderable;
 import viewUtil.WorkspaceView;
@@ -26,7 +26,7 @@ import viewUtil.WorkspaceView;
 public class LEController {
 
     private IWindow myView;
-    private IModel myModel;
+    private ILevelEditor myModel;
     private Map<Editable, WorkspaceView> myWorkspace2Tab;
     private Map<WorkspaceView, Editable> myTab2Workspace;
     private static final int DEFAULT_SPRITE_GRID_SIZE = 10;
@@ -94,11 +94,10 @@ public class LEController {
      * @param cmd - command to process
      * @return ret - return int from command process
      */
-    public int processCommand (WorkspaceView t, String cmd) {
+    public void processCommand (WorkspaceView t, String cmd) {
         Editable m = getModelForWorkspace(t);
-        int ret = myModel.processCommand(m, cmd);
+        myModel.processCommand(m, cmd);
         t.setRenderable((Renderable) m);
-        return ret;
     }
 
     
@@ -116,7 +115,7 @@ public class LEController {
      * @param id
      */
     private void initializeWorkspace (int id) {
-        Editable m = new SpriteGrid(DEFAULT_SPRITE_GRID_SIZE,DEFAULT_SPRITE_GRID_SIZE);;
+        Editable m = new LevelGrid(DEFAULT_SPRITE_GRID_SIZE,DEFAULT_SPRITE_GRID_SIZE);;
         WorkspaceView associatedWorkspaceView = myView.initializeWorkspaceView(id);
         myWorkspace2Tab.put(m, associatedWorkspaceView);
         myTab2Workspace.put(associatedWorkspaceView, m);

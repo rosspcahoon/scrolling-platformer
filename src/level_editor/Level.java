@@ -24,7 +24,7 @@ public class Level implements Editable, Renderable {
     private List<Sprite> myFrameOfReferenceSprites;
     private View myView;
     private Status myStatus;
-    private SpriteGrid mySpriteGrid;
+    private LevelGrid mySpriteGrid;
 
     public Level(int id, ScrollingManager sm){
 

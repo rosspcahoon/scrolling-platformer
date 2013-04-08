@@ -3,23 +3,25 @@ import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JPanel;
+import util.IView;
 
 /**
  * This class is responsible for refining JPanel and 
  * making it convenient to use with a specific Layout Manager
  * (it could have been called as well SLogoViewContainer)
- * It is also responsible for requiring explicitation of parent-child relations
+ * It is also responsible for enforcing the chain of responsibility all
+ * the way to the controller
  * 
  * @author Ross Cahoon, Dagbedji Fagnisse
  *
  */
 @SuppressWarnings("serial")
-public abstract class WindowView extends JPanel {
+public abstract class WindowComponent extends JPanel implements IView {
 
     private GridBagConstraints myConstraints;
-    private Container myParent;
+    private IView myParent;
 
-    private WindowView () {
+    private WindowComponent () {
         setLayoutManager();
         myConstraints = new GridBagConstraints();
         this.setBorder(ViewConstants.DEFAULT_BORDER);
@@ -32,16 +34,20 @@ public abstract class WindowView extends JPanel {
      * Constructor for WindowView
      * @param parent the parent of the View being created
      */
-    public WindowView (Container parent) {
+    public WindowComponent (IView parent) {
         this();
         myParent = parent;
     }
     
-    /**
-     * Returns the parent component of this component
-     */    
-    public Container getParent() {
-        return myParent;
+//    /**
+//     * Returns the parent component of this component
+//     */    
+//    public IModel getParent() {
+//        return myParent;
+//    }
+    
+    public void processCommand(String cmd) {
+        myParent.processCommand(cmd);
     }
 
     

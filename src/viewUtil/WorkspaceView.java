@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Image;
 import java.util.Stack;
 import viewUtil.Renderable;
+import util.IView;
 import util.IWindow;
 import viewUtil.ViewConstants;
 import viewUtil.Window;
@@ -16,7 +17,7 @@ import viewUtil.Window;
  * @author Dagbedji Fagnisse
  *
  */
-public abstract class WorkspaceView extends WindowView{
+public abstract class WorkspaceView extends WindowComponent {
 
     /**
      * 
@@ -29,7 +30,7 @@ public abstract class WorkspaceView extends WindowView{
     private GridBagConstraints myConstraints;
     private Dimension mySize = ViewConstants.DEFAULT_TAB_SIZE;
 
-    public WorkspaceView (Container hostWindow) {
+    public WorkspaceView (IView hostWindow) {
         super(hostWindow);
         setWindow();
         setPreferredSize(mySize);
@@ -38,7 +39,7 @@ public abstract class WorkspaceView extends WindowView{
 //        myRenderableBrowsingHelper = new Stack<Renderable>();
     }
 
-    public WorkspaceView (int id, Container hostWindow) {
+    public WorkspaceView (int id, IView hostWindow) {
         // TODO Auto-generated constructor stub
         this(hostWindow);
         myID = id; 

@@ -16,9 +16,9 @@ import level_editor.commands.CommandLibrary;
  *
  */
 import util.Editable;
-import util.IModel;
+import util.IView;
 
-public class LevelEditor implements IModel {
+public class LevelEditor implements ILevelEditor {
 
     private static final String SPACE = " ";
     private static final String NO_METHOD_COMMAND_ERROR = "Command does not exist";
@@ -26,7 +26,7 @@ public class LevelEditor implements IModel {
     private static final String DEFAULT_COMMAND_ERROR = "Incorrect Command";
     private Editable myLevel;
     private ScrollingManager myScrollingManager;
-    private SpriteGrid mySpriteGrid;
+    private LevelGrid mySpriteGrid;
 
     public LevelEditor () {
         myLevel = new Level(1, myScrollingManager); 
@@ -37,11 +37,10 @@ public class LevelEditor implements IModel {
     }
 
     @Override
-    public int processCommand (Editable m, String cmd) {
+    public void processCommand (Editable m, String cmd) {
         // TODO Auto-generated method stub
-        mySpriteGrid = (SpriteGrid) m;
+        mySpriteGrid = (LevelGrid) m;
         processCommand(cmd);
-        return 0;
     }
 
     @Command

@@ -1,5 +1,7 @@
 package level_editor;
 
+import util.Editable;
+
 /**
  * Interface between a LevelEditor model and a Level Editor view.
  * This interface defines the behavior that any external component should
@@ -13,12 +15,8 @@ package level_editor;
  */
 public interface ILevelEditor {
 
-    /**
-     * Process a String representing a command.
-     * 
-     * @param command - unprocessed String.
-     */
-    public void processCommand(String command);
+    
+    public void processCommand (Editable m, String cmd);
 
     
 }
