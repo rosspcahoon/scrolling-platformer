@@ -1,7 +1,6 @@
 package test_sprites;
 
 import java.awt.Dimension;
-import collision_handlers.CollisionHandler;
 import collision_handlers.Turtle_CH;
 import sprite_superclasses.NonStaticEntity;
 import util.Location;

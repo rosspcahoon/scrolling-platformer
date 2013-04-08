@@ -2,7 +2,6 @@ package test_sprites;
 
 import java.awt.Dimension;
 import collision_handlers.Coin_CH;
-import collision_handlers.CollisionHandler;
 import sprite_superclasses.StaticEntity;
 import util.Location;
 import util.Pixmap;

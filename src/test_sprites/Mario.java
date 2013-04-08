@@ -1,21 +1,17 @@
 package test_sprites;
 
 import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.util.List;
-import collision_handlers.CollisionHandler;
 import collision_handlers.Mario_CH;
 import design_patterns.State;
 import sprite_superclasses.Player;
 import util.Location;
 import util.Pixmap;
-import util.Vector;
 import view.View;
 
 public class Mario extends Player {
 
-    private Mario_CH collisionHandler = new Mario_CH();
+    private Mario_CH collisionHandler;
     List<State> myStates;    
     State currentState; 
     View myView;
@@ -39,6 +35,7 @@ public class Mario extends Player {
         myOriginalCenter = center;
         mySize = size;
         myImage = image;
+        collisionHandler = new Mario_CH(view);
         // TODO Auto-generated constructor stub
     }
 
