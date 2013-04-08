@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import scrollingmanager.ScrollingManager;
 import util.IModel;
 import util.WorkspaceModel;
 import viewUtil.Renderable;
@@ -22,10 +23,12 @@ import viewUtil.WorkspaceView;
 
 public class LEController {
 
+    private static final int DEFAULT_SIZE = 10;
     private Window myView;
     private IModel myModel;
     private Map<WorkspaceModel, WorkspaceView> myWorkspace2Tab;
     private Map<WorkspaceView, WorkspaceModel> myTab2Workspace;
+    private ScrollingManager myScrollingManager;
 
     /**
      * Constructor
@@ -111,7 +114,7 @@ public class LEController {
      * @param id
      */
     private void initializeWorkspace (int id) {
-        WorkspaceModel m = new Level(id);
+        WorkspaceModel m = new SpriteGrid(DEFAULT_SIZE,DEFAULT_SIZE);
         WorkspaceView associatedTab = new LETab(id, myView);
         myWorkspace2Tab.put(m, associatedTab);
         myTab2Workspace.put(associatedTab, m);

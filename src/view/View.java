@@ -19,9 +19,10 @@ import java.util.TreeSet;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.Timer;
+import scrollingmanager.ScrollingManager;
 import sprites.Player;
 import model.Model;
-import model.Model2;
+import model.Model;
 
 
 /**
@@ -42,7 +43,7 @@ public class View extends JComponent {
     // drives the animation
     private Timer myTimer;
     // game to be animated
-    private Model2 myGame;
+    private Model myGame;
     // input state
     private int myLastKeyPressed;
     private Point myLastMousePosition;
@@ -50,6 +51,7 @@ public class View extends JComponent {
     private Set<Integer> myKeys;
     // Player
     private Player myPlayer;
+    private ScrollingManager myScrollingManager;
 
 
     /**
@@ -76,10 +78,10 @@ public class View extends JComponent {
      */
     @Override
     public void paintComponent (Graphics pen) {
-        scrollManager(pen);
-        
+
         // first time needs to be special cased :(
         if (myGame != null) {
+            scrollManager(pen);
             myGame.paint((Graphics2D) pen);
         }
     }
@@ -141,7 +143,8 @@ public class View extends JComponent {
             }
         });
         // start animation
-        myGame = new Model2(this);
+
+        myGame = new Model(this, myScrollingManager);
         timer.start();
     }
 

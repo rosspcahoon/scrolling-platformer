@@ -1,9 +1,9 @@
 package level_editor;
 
 
-import java.awt.Dimension;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import scrollingmanager.ScrollingManager;
 import sprites.Player;
 import util.Location;
 import level_editor.commands.Command;
@@ -18,7 +18,6 @@ import level_editor.commands.CommandLibrary;
  *
  */
 import util.IModel;
-import util.Pixmap;
 import util.WorkspaceModel;
 
 public class LevelEditor implements IModel {
@@ -28,9 +27,11 @@ public class LevelEditor implements IModel {
     private static final String PARAM_COMMAND_ERROR = "Incorrect Parameters";
     private static final String DEFAULT_COMMAND_ERROR = "Incorrect Command";
     private Editable myLevel;
+    private ScrollingManager myScrollingManager;
+    private SpriteGrid mySpriteGrid;
 
     public LevelEditor () {
-        myLevel = new Level(1); 
+        myLevel = new Level(1, myScrollingManager); 
     }
 
     public LevelEditor (String language) {
@@ -40,7 +41,7 @@ public class LevelEditor implements IModel {
     @Override
     public int processCommand (WorkspaceModel m, String cmd) {
         // TODO Auto-generated method stub
-        myLevel = (Level) m;
+        mySpriteGrid = (SpriteGrid) m;
         processCommand(cmd);
         return 0;
     }
@@ -52,7 +53,7 @@ public class LevelEditor implements IModel {
     
     @Command
     public void deleteSprite (int x, int y) {
-        myLevel.deleteSprite(new Location(x,y));
+        mySpriteGrid.deleteSprite(x,y);
     }
 
     @Command
@@ -77,16 +78,16 @@ public class LevelEditor implements IModel {
             m.invoke(this, params);
         }
         catch (NullPointerException e) {
-            myLevel.setErrorMessage(NO_METHOD_COMMAND_ERROR);
+          //TODO NO_METHOD_COMMAND_ERROR = "Command does not exist";
         }
         catch (IllegalAccessException e) {
-            myLevel.setErrorMessage(DEFAULT_COMMAND_ERROR);
+          //TODO DEFAULT_COMMAND_ERROR = "Incorrect Command";
         }
         catch (IllegalArgumentException e) {
-            myLevel.setErrorMessage(PARAM_COMMAND_ERROR);
+          //TODO PARAM_COMMAND_ERROR = "Incorrect Parameters";
         }
         catch (InvocationTargetException e) {
-            myLevel.setErrorMessage(DEFAULT_COMMAND_ERROR);
+            //TODO DEFAULT_COMMAND_ERROR = "Incorrect Command";
         }
     }
 
@@ -104,22 +105,4 @@ public class LevelEditor implements IModel {
         return params;
     }
 
-    //For Preliminary Testing only. Will be deleted.
-//    public static void main (String args[]) {
-//        LevelEditor l = new LevelEditor();
-//        l.processCommand("addSprite 1 400 500");
-//        SpriteGrid sg = new SpriteGrid(4,4);
-//        sg.addSprite(new Player(new Pixmap("ball.gif"), new Location(), new Dimension(100,100)), 10, 10);
-//        for(int i = 0; i < 4;i++){
-//            for(int j = 0; j < 4;j++){
-//                sg.addSprite(new Player(new Pixmap("ball.gif"), new Location(), new Dimension(25,25)), i*25, j*25);
-//            }
-//        }
-//        sg.deleteSprite(50, 45);
-//        for(int i = 0; i < 4;i++){
-//            for(int j = 0; j < 4;j++){
-//                sg.addSprite(new Player(new Pixmap("ball.gif"), new Location(), new Dimension(25,25)), i*25, j*25);
-//            }
-//        }
-//    }
 }

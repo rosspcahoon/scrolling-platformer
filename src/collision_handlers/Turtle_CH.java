@@ -41,7 +41,7 @@ public class Turtle_CH extends CollisionHandler implements Visitor {
     }
 
     public void handleTurtleCollision (Sprite obj2) {
-        System.out.println(obj2.getType());
+//        System.out.println(obj2.getType());
         
         switch (obj2.getType()) {
             case COIN:

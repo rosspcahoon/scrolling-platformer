@@ -99,22 +99,6 @@ public class Player extends AbstractPlayer {
         return myOriginalCenter;
     }
     
-    public double getRightBoundary(Dimension frame) {
-        return (this.getX() + frame.getWidth() / 2);
-    }
-    
-    public double getLeftBoundary(Dimension frame) {
-        return (this.getX() - frame.getWidth() / 2);
-    }
-    
-    public double getUpperBoundary(Dimension frame) {
-        return (this.getY() - frame.getHeight() / 2);
-    }
-    
-    public double getLowerBoundary(Dimension frame) { 
-        return (this.getY() + frame.getHeight() / 2);
-    }
-    
     public Type getType() {
         return Type.NONE;
     }
