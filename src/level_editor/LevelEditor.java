@@ -4,6 +4,7 @@ package level_editor;
 import java.awt.Dimension;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import scrollingmanager.ScrollingManager;
 import sprites.Player;
 import util.Location;
 import level_editor.commands.Command;
@@ -28,9 +29,10 @@ public class LevelEditor implements IModel {
     private static final String PARAM_COMMAND_ERROR = "Incorrect Parameters";
     private static final String DEFAULT_COMMAND_ERROR = "Incorrect Command";
     private Editable myLevel;
+    private ScrollingManager myScrollingManager;
 
     public LevelEditor () {
-        myLevel = new Level(1); 
+        myLevel = new Level(1, myScrollingManager); 
     }
 
     public LevelEditor (String language) {

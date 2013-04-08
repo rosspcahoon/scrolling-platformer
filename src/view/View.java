@@ -19,6 +19,7 @@ import java.util.TreeSet;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.Timer;
+import scrollingmanager.ScrollingManager;
 import sprites.Player;
 import model.Model;
 
@@ -49,6 +50,7 @@ public class View extends JComponent {
     private Set<Integer> myKeys;
     // Player
     private Player myPlayer;
+    private ScrollingManager myScrollingManager;
 
 
     /**
@@ -140,7 +142,7 @@ public class View extends JComponent {
             }
         });
         // start animation
-        myGame = new Model(this);
+        myGame = new Model(this, myScrollingManager);
         timer.start();
     }
 

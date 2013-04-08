@@ -17,6 +17,7 @@ import util.PlatformerConstants;
 import util.Sprite;
 import view.View;
 import level_editor.Level;
+import scrollingmanager.ScrollingManager;
 
 
 /**
@@ -35,11 +36,11 @@ public class Model {
     /**
      * Create a game of the given size with the given display for its shapes.
      */
-    public Model(View view) {
+    public Model(View view, ScrollingManager sm) {
         setSpriteList(new ArrayList<Sprite>());
         myView = view;
         //ONLY USED FOR TESTING
-        myCurrLevel = new Level(1, view);
+        myCurrLevel = new Level(1, sm, view);
         myCurrLevel.setSize(PlatformerConstants.DEFAULT_LEVEL_SIZE);
 
 //        spriteList.add(new Player(new Pixmap("brick9.gif"), 

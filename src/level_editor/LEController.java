@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import scrollingmanager.ScrollingManager;
 import util.IModel;
 import util.WorkspaceModel;
 import viewUtil.Renderable;
@@ -26,6 +27,7 @@ public class LEController {
     private IModel myModel;
     private Map<WorkspaceModel, WorkspaceView> myWorkspace2Tab;
     private Map<WorkspaceView, WorkspaceModel> myTab2Workspace;
+    private ScrollingManager myScrollingManager;
 
     /**
      * Constructor
@@ -111,7 +113,7 @@ public class LEController {
      * @param id
      */
     private void initializeWorkspace (int id) {
-        WorkspaceModel m = new Level(id);
+        WorkspaceModel m = new Level(id, myScrollingManager);
         WorkspaceView associatedTab = new LETab(id, myView);
         myWorkspace2Tab.put(m, associatedTab);
         myTab2Workspace.put(associatedTab, m);

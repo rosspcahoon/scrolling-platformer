@@ -7,6 +7,7 @@ import java.util.List;
 import util.Location;
 import util.Sprite;
 import util.WorkspaceModel;
+import scrollingmanager.ScrollingManager;
 import sprites.Player;
 import util.PlatformerConstants;
 import view.View;
@@ -23,14 +24,14 @@ public class Level extends WorkspaceModel implements Editable{
     private View myView;
     private Status myStatus;
 
-    public Level(int id){
+    public Level(int id, ScrollingManager sm){
 
         //MIGHT WANT TO INITIALIZE THIS WITH A PLAYER AS WELL
         mySize = PlatformerConstants.DEFAULT_LEVEL_SIZE;
         initFrames();
     }
 
-    public Level(int id, View view){
+    public Level(int id, ScrollingManager sm, View view){
         //MIGHT WANT TO INITIALIZE THIS WITH A PLAYER AS WELL
         mySize = PlatformerConstants.DEFAULT_LEVEL_SIZE;
         initFrames();
