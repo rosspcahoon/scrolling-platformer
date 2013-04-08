@@ -47,9 +47,8 @@ public class LETab extends WorkspaceView implements ILEView, ILevelEditor{
 
     @Override
     protected void addComponents () {
-        // TODO Auto-generated method stub
+        // TODO Add other comp.
         EasyGridFactory.layoutVertical(this, myLevelView);
-        System.out.println("here");
     }
 
     @Override

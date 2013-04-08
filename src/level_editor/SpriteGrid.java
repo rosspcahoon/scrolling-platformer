@@ -4,17 +4,21 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.HashSet;
 import java.util.Set;
+import scrollingmanager.ScrollingManager;
+import util.Editable;
+import util.Location;
 import util.Sprite;
 import viewUtil.Renderable;
 
 
-public class SpriteGrid implements Renderable {
+public class SpriteGrid implements Editable, Renderable{
 
     private static final int DEFAULT_SPRITE_SIZE = 25;
     private int mySpriteSize;
     private SpriteBox[][] myGrid;
     private Dimension mySize;
     private Set<SpriteBox> myPaintableBoxes;
+    private ScrollingManager myScrollingManager;
 
     public SpriteGrid (int x, int y) {
         mySpriteSize = DEFAULT_SPRITE_SIZE;
@@ -46,11 +50,9 @@ public class SpriteGrid implements Renderable {
         if (checkAvailable(currentBox, spr.getWidth(), spr.getHeight())) {
             currentBox.addSprite(spr);
             myPaintableBoxes.add(currentBox);
-            combineBoxes(currentBox, currentBox, spr.getWidth(), spr.getHeight());
-            System.out.println("added Sprite "+currentBox.getX()+" "+currentBox.getY());
-        }
+            combineBoxes(currentBox, currentBox, spr.getWidth(), spr.getHeight());}
         else{
-            System.out.println("unavailable "+currentBox.getX()+" "+currentBox.getY());
+            // TODO send Unavailable feedback
         }
     }
 
@@ -58,7 +60,14 @@ public class SpriteGrid implements Renderable {
         SpriteBox currentBox = nearestBox(x, y);
         currentBox.deleteSprite();
         myPaintableBoxes.remove(currentBox);
-        System.out.println("deleted Sprite");
+    }
+    
+    public Editable createLevel(int id){
+        Editable lev = new Level(id, myScrollingManager);
+        for(SpriteBox box:myPaintableBoxes){
+            lev.addNewSprite(box.getSprite());
+        }
+        return lev;
     }
 
     private boolean checkAvailable (SpriteBox current, double width, double height) {
@@ -101,6 +110,30 @@ public class SpriteGrid implements Renderable {
                 myGrid[x][y] = new SpriteBox(this, x, y);
             }
         }
+    }
+
+    @Override
+    public void changeBackground () {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void addNewSprite (Sprite s) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void deleteSprite (Location deleteAtLocation) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void setErrorMessage (String errorMessage) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

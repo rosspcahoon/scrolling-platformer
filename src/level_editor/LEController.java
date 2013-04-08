@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import util.Editable;
+import scrollingmanager.ScrollingManager;
 import util.IModel;
 import util.IWindow;
 import viewUtil.Renderable;
@@ -28,6 +29,8 @@ public class LEController {
     private IModel myModel;
     private Map<Editable, WorkspaceView> myWorkspace2Tab;
     private Map<WorkspaceView, Editable> myTab2Workspace;
+    private static final int DEFAULT_SPRITE_GRID_SIZE = 10;
+    private ScrollingManager myScrollingManager;
 
     /**
      * Constructor
@@ -113,7 +116,7 @@ public class LEController {
      * @param id
      */
     private void initializeWorkspace (int id) {
-        Editable m = new Level(id);
+        Editable m = new SpriteGrid(DEFAULT_SPRITE_GRID_SIZE,DEFAULT_SPRITE_GRID_SIZE);;
         WorkspaceView associatedWorkspaceView = myView.initializeWorkspaceView(id);
         myWorkspace2Tab.put(m, associatedWorkspaceView);
         myTab2Workspace.put(associatedWorkspaceView, m);

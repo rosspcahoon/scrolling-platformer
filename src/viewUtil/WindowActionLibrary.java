@@ -338,7 +338,7 @@ public class WindowActionLibrary {
                 java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
             }
             catch (java.io.IOException er) {
-                System.out.println(er.getMessage());
+//                System.out.println(er.getMessage());
             }
         }
     }

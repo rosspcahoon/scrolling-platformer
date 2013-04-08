@@ -191,7 +191,7 @@ public abstract class Window extends JFrame implements IWindow {
                 }
             }
             catch (java.io.IOException er) {
-                System.out.println(er.getMessage());
+//                System.out.println(er.getMessage());
             }
         }
     }
