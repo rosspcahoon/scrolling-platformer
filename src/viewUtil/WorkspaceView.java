@@ -6,8 +6,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Image;
 import java.util.Stack;
 import viewUtil.Renderable;
-import util.IView;
-import util.IWindow;
 import viewUtil.ViewConstants;
 import viewUtil.Window;
 

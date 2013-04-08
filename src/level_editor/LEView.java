@@ -12,7 +12,7 @@ public class LEView extends Window {
     private static final long serialVersionUID = 1L;
     private static final String TITLE = "Level Editor";
     
-    public LEView (String language, LEController lEController) {
+    public LEView (String language, LEController lEController, SpriteLibrary lib) {
         super(TITLE, language, lEController);
         // TODO Auto-generated constructor stub
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

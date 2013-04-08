@@ -5,7 +5,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import util.IView;
+import viewUtil.IView;
 import viewUtil.ViewConstants;
 import viewUtil.Renderable;
 import viewUtil.WindowComponent;

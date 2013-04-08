@@ -1,7 +1,7 @@
 package level_editor;
 
 import java.awt.Container;
-import util.IView;
+import viewUtil.IView;
 import viewUtil.Renderable;
 import viewUtil.WindowComponent;
 

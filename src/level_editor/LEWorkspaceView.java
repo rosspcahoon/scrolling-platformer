@@ -2,9 +2,9 @@ package level_editor;
 
 import java.awt.Container;
 import util.Editable;
-import util.IView;
-import util.IWindow;
 import viewUtil.EasyGridFactory;
+import viewUtil.IView;
+import viewUtil.IWindow;
 import viewUtil.Renderable;
 import viewUtil.WorkspaceView;
 
