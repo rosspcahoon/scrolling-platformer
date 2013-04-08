@@ -12,6 +12,11 @@ import viewUtil.WorkspaceView;
  *
  */
 public class LETab extends WorkspaceView implements ILEView {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private Renderable myRenderable;
     private LevelView myLevelView;
     private EditorView myEditorView;
 
@@ -43,14 +48,22 @@ public class LETab extends WorkspaceView implements ILEView {
     @Override
     protected void addComponents () {
         // TODO Auto-generated method stub
-        EasyGridFactory.layoutVertical(this, myLevelView, myEditorView);
+        EasyGridFactory.layoutVertical(this, myLevelView);
         System.out.println("here");
     }
 
     @Override
     public void render (Renderable r) {
-        // TODO Auto-generated method stub
+        // TODO Auto-generated method stub !!!
         myLevelView.render(r);
+    }
+
+    @Override
+    public void setRenderable (Renderable r) {
+        // TODO Auto-generated method stub
+        myRenderable = r;
+//        myRenderableHistory.add(renderableRoom);
+        render(myRenderable);
     }
 
 }

@@ -5,6 +5,8 @@ import viewUtil.WorkspaceView;
 
 public interface IWindow {
 
-    WorkspaceView addWorkspace (int id);
+    WorkspaceView initializeWorkspaceView (int id);
+
+    void showWorkspace (WorkspaceView associatedWorkspaceView, Renderable m);
 
 }

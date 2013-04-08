@@ -228,6 +228,4 @@ public abstract class Window extends JFrame implements IWindow {
     public void redo () {
         getActiveTab().redo();
     }
-    
-    public abstract WorkspaceView addWorkspace (int id);
 }

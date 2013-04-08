@@ -114,11 +114,10 @@ public class LEController {
      */
     private void initializeWorkspace (int id) {
         Editable m = new Level(id);
-        WorkspaceView associatedTab = myView.addWorkspace(id);
-        myWorkspace2Tab.put(m, associatedTab);
-        myTab2Workspace.put(associatedTab, m);
-        associatedTab.setRenderable((Renderable) m);
-        
+        WorkspaceView associatedWorkspaceView = myView.initializeWorkspaceView(id);
+        myWorkspace2Tab.put(m, associatedWorkspaceView);
+        myTab2Workspace.put(associatedWorkspaceView, m);
+        myView.showWorkspace(associatedWorkspaceView, (Renderable) m);
     }
 
 }

@@ -1,6 +1,7 @@
 package level_editor;
 
 import javax.swing.JFrame;
+import viewUtil.Renderable;
 import viewUtil.Window;
 import viewUtil.WorkspaceView;
 
@@ -20,7 +21,7 @@ public class LEView extends Window {
     }
 
     @Override
-    public WorkspaceView addWorkspace (int id) {
+    public WorkspaceView initializeWorkspaceView (int id) {
         return new LETab(id, this);
     }
 
@@ -75,6 +76,12 @@ public class LEView extends Window {
     @Override
     protected void setMenu () {
         super.setMenu(new LEMenuBar(this));
+    }
+
+    @Override
+    public void showWorkspace (WorkspaceView associatedWorkspaceView, Renderable r) {
+        // TODO Auto-generated method stub
+        super.addTab(associatedWorkspaceView, r);
     }
 
 }
