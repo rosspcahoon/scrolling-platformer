@@ -8,6 +8,14 @@ import util.Location;
 import util.Pixmap;
 import view.View;
 
+/**
+ * Represents a scrolling platformer.
+ *  * 
+ * @author Ross Cahoon
+ * @author Jay Wang
+ * @author Scott Valentine
+ */
+
 public class Model {
 
     private View myView;
@@ -17,7 +25,14 @@ public class Model {
     private ModelInputs myInputs;
     private LevelManager myLevelManager;
     
+    /**
+     * Constructs a new Model based on the view and the scrolling manager used by the game.
+     * 
+     * @param view which is used to display/control game.
+     * @param myScrollingManager used to control in-game scrolling.
+     */
     public Model (View view, ScrollingManager myScrollingManager) {
+        // TODO: player instantiation changes from game to game.
          myPlayer = new Player(new Pixmap("brick9.gif"), new Location(100,100), new Dimension(10,10), view);
         
         myInputs = new ModelInputs(myPlayer, view);
@@ -26,6 +41,7 @@ public class Model {
         myLevelManager.currentLevel().addPlayer(myPlayer);
     }
 
+    // TODO: find way to handle intersections (maybe within level)
     private void intersectingSprites (){
         
     }
@@ -37,10 +53,20 @@ public class Model {
          myLevelManager.currentLevel().paint(pen);
      }
     
+     /**
+      * Updates all the game elements since the last update.
+      * 
+      * @param elapsedTime is the elapsed time since the last update.
+      */
      public void update(double elapsedTime) {
          myLevelManager.currentLevel().update(elapsedTime, myView.getSize(), myView);
      }
      
+     /**
+      * Gives the right boundary
+      * 
+      * @return
+      */
      public double getRightBoundary() {
          return myLevelManager.currentLevel().getRightBoundary();
      }
