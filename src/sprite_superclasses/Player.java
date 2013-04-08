@@ -1,15 +1,15 @@
-package sprites;
+package sprite_superclasses;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.List;
-import abstract_sprites.AbstractPlayer;
 import collision_handlers.Mario_CH;
 import design_patterns.State;
 import test_sprites.Type;
 import util.Location;
 import util.Pixmap;
+import util.Sprite;
 import util.Vector;
 import view.View;
 
@@ -30,7 +30,7 @@ import view.View;
  * @author Jay Wang
  *
  */
-public class Player extends AbstractPlayer {
+public class Player extends Sprite {
 
 //    Graphics2D pen;
     Mario_CH myCollisionHandler;
@@ -42,15 +42,15 @@ public class Player extends AbstractPlayer {
     private Pixmap myImage;
     
     // Used for testing purposes only
-    private static final int MOVE_LEFT = KeyEvent.VK_A;
-    private static final int MOVE_RIGHT = KeyEvent.VK_D;
-    private static final int MOVE_UP = KeyEvent.VK_W;
-    private static final int MOVE_DOWN = KeyEvent.VK_S;
-    private static final int MOVE_SPEED = 10;
-    private static final Vector LEFT_VELOCITY = new Vector(LEFT_DIRECTION, MOVE_SPEED);
-    private static final Vector RIGHT_VELOCITY = new Vector(RIGHT_DIRECTION, MOVE_SPEED);
-    private static final Vector UP_VELOCITY = new Vector(UP_DIRECTION, MOVE_SPEED);
-    private static final Vector DOWN_VELOCITY = new Vector(DOWN_DIRECTION, MOVE_SPEED);
+    protected static final int MOVE_LEFT = KeyEvent.VK_A;
+    protected static final int MOVE_RIGHT = KeyEvent.VK_D;
+    protected static final int MOVE_UP = KeyEvent.VK_W;
+    protected static final int MOVE_DOWN = KeyEvent.VK_S;
+    protected static final int MOVE_SPEED = 10;
+    protected static final Vector LEFT_VELOCITY = new Vector(LEFT_DIRECTION, MOVE_SPEED);
+    protected static final Vector RIGHT_VELOCITY = new Vector(RIGHT_DIRECTION, MOVE_SPEED);
+    protected static final Vector UP_VELOCITY = new Vector(UP_DIRECTION, MOVE_SPEED);
+    protected static final Vector DOWN_VELOCITY = new Vector(DOWN_DIRECTION, MOVE_SPEED);
     
     public Player (Pixmap image, Location center, Dimension size, View view) {
         super(image, center, size);

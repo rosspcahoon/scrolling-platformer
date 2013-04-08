@@ -20,7 +20,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 import scrollingmanager.ScrollingManager;
-import sprites.Player;
+import sprite_superclasses.Player;
+import util.Sprite;
 import model.Model;
 
 
@@ -51,6 +52,7 @@ public class View extends JComponent {
     // Player
     private Player myPlayer;
     private ScrollingManager myScrollManager;
+    private boolean win = false;
 
 
     /**
@@ -78,6 +80,7 @@ public class View extends JComponent {
      */
     @Override
     public void paintComponent (Graphics pen) {
+
         // first time needs to be special cased :(
         if (myGame != null & myScrollManager != null) {
             Image img = new ImageIcon(getClass().getResource("/images/forestbackground.jpg")).getImage();
@@ -87,6 +90,13 @@ public class View extends JComponent {
             pen.drawImage(img, myScrollManager.right(), myScrollManager.lower(), 800, 300, null);
             myGame.paint((Graphics2D) pen);
         }
+      
+        
+        //only used for testing, please remove later
+        if (win == true) {
+            paintWin(pen);
+        }
+        
     }
 
     /**
@@ -166,5 +176,16 @@ public class View extends JComponent {
                 myLastMousePosition = e.getPoint();
             }
         });
+    }
+    
+  //only used for testing, please remove later
+    private void paintWin(Graphics pen) {
+        Image img = new ImageIcon(getClass().getResource("/images/win.gif")).getImage();
+        pen.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), null);
+    }
+    
+    //only used for testing, please remove later
+    public void win() {
+        win = true;
     }
 }

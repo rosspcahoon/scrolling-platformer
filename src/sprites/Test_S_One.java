@@ -2,7 +2,7 @@ package sprites;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import abstract_sprites.AbstractStaticEntity;
+import sprite_superclasses.StaticEntity;
 import test_sprites.Type;
 import util.Location;
 import util.Pixmap;
@@ -15,7 +15,7 @@ import util.Pixmap;
  *      
  * @author Jay Wang
  */
-public class Test_S_One extends AbstractStaticEntity {
+public class Test_S_One extends StaticEntity {
 
     public Test_S_One (Pixmap image, Location center, Dimension size) {
         super(image, center, size);

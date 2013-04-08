@@ -8,7 +8,7 @@ import util.Location;
 import util.Sprite;
 import util.WorkspaceModel;
 import scrollingmanager.ScrollingManager;
-import sprites.Player;
+import sprite_superclasses.Player;
 import util.PlatformerConstants;
 import view.View;
 
