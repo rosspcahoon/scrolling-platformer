@@ -4,13 +4,14 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
+import util.Location;
+import util.Sprite;
+import util.WorkspaceModel;
 import sprites.Player;
 import util.PlatformerConstants;
-import util.Sprite;
-//import util.Sprite;
-import util.WorkspaceModel;
 import view.View;
-public class Level extends WorkspaceModel{
+
+public class Level extends WorkspaceModel implements Editable{
 
     private Dimension mySize;
     private Dimension frameOfReferenceSize;
@@ -20,14 +21,15 @@ public class Level extends WorkspaceModel{
     private List<Sprite> myFrameOfActionSprites;
     private List<Sprite> myFrameOfReferenceSprites;
     private View myView;
-    
+    private Status myStatus;
 
     public Level(int id){
+
         //MIGHT WANT TO INITIALIZE THIS WITH A PLAYER AS WELL
         mySize = PlatformerConstants.DEFAULT_LEVEL_SIZE;
         initFrames();
     }
-    
+
     public Level(int id, View view){
         //MIGHT WANT TO INITIALIZE THIS WITH A PLAYER AS WELL
         mySize = PlatformerConstants.DEFAULT_LEVEL_SIZE;
@@ -62,15 +64,16 @@ public class Level extends WorkspaceModel{
         }
     }
 
+    //Methods from Renderable Interface. To be called by View components.  
+
     @Override
-    public Object getState () {
-        // TODO Auto-generated method stub
-        return null;
+    public Status getState () {
+        return myStatus;
     }
 
     public void update(double elapsedTime, Dimension bounds, View view) {
         if(myPlayer != null) {
-//            System.out.println("Player Location: " + myPlayer.getCenter());
+            //            System.out.println("Player Location: " + myPlayer.getCenter());
             updateFrames(view);
             myPlayer.update(elapsedTime, bounds);
             for(Sprite s: myFrameOfActionSprites) {
@@ -92,8 +95,8 @@ public class Level extends WorkspaceModel{
     private void updateFrames(View view) {
         myFrameOfActionSprites.clear();
         myFrameOfReferenceSprites.clear();
-       frameOfReferenceSize = view.getSize();
-       frameOfActionSize = calcActionFrameSize(view.getSize());
+        frameOfReferenceSize = view.getSize();
+        frameOfActionSize = calcActionFrameSize(view.getSize());
         if(mySprites.size() > 0) {
             for(Sprite s: mySprites) {
                 if(checkRange(s, frameOfReferenceSize)) {
@@ -119,30 +122,57 @@ public class Level extends WorkspaceModel{
         }
         return true;
     }
-    
+
     private Dimension calcActionFrameSize(Dimension size) {
         Dimension temp = new Dimension((int) size.getWidth() + 100, (int) size.getHeight() + 100);
         return temp;
     }
-    
+
     public double getRightBoundary() {
         return myPlayer.getRightBoundary(frameOfReferenceSize);
     }
-    
-    
+
+
     public double getLeftBoundary() {
         return myPlayer.getLeftBoundary(frameOfReferenceSize);
     }
-    
+
     public double getUpperBoundary() {
         return myPlayer.getUpperBoundary(frameOfReferenceSize);
     }
-    
+
     public double getLowerBoundary() {
         return myPlayer.getLowerBoundary(frameOfReferenceSize);
     }
-    
+
     public Dimension getLevelBounds() {
         return mySize;
+    }
+
+
+    //Methods from Editable Interface. Methods called by LevelEditor.
+
+    @Override
+    public void changeBackground () { //params need to be added
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void addNewSprite (Sprite s) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void deleteSprite (Location deleteAtLocation) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void setErrorMessage (String errorMessage) {
+        myStatus.setErrorMessage(errorMessage);
+
     }
 }
