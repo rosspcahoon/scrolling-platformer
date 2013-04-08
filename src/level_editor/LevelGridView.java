@@ -9,7 +9,7 @@ import viewUtil.ViewConstants;
 import viewUtil.Renderable;
 import viewUtil.WindowView;
 
-public class LevelView extends WindowView implements ILEView {
+public class LevelGridView extends WindowView implements ILEView {
     /**
      * 
      */
@@ -17,7 +17,7 @@ public class LevelView extends WindowView implements ILEView {
     private Dimension mySize;
     private Renderable myLevel;
 
-    public LevelView (Container parent) {
+    public LevelGridView (Container parent) {
         super(parent);
         // TODO Auto-generated constructor stub
     }

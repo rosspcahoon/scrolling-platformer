@@ -11,13 +11,13 @@ import viewUtil.WorkspaceView;
  * @author Dagbedji Fagnisse
  *
  */
-public class LETab extends WorkspaceView implements ILEView {
+public class LETab extends WorkspaceView implements ILEView, ILevelEditor{
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
     private Renderable myRenderable;
-    private LevelView myLevelView;
+    private LevelGridView myLevelView;
     private EditorView myEditorView;
 
     public LETab (Container host) {
@@ -41,7 +41,7 @@ public class LETab extends WorkspaceView implements ILEView {
     @Override
     protected void initializeVariables () {
         // TODO Auto-generated method stub
-        myLevelView = new LevelView(this);
+        myLevelView = new LevelGridView(this);
         myEditorView = new EditorView(this);
     }
 
@@ -64,6 +64,12 @@ public class LETab extends WorkspaceView implements ILEView {
         myRenderable = r;
 //        myRenderableHistory.add(renderableRoom);
         render(myRenderable);
+    }
+
+    @Override
+    public void processCommand (String command) {
+        // TODO - Need to refactor
+        super.processConsoleInput(command);
     }
 
 }
