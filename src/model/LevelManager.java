@@ -2,8 +2,8 @@ package model;
 
 import java.util.List;
 import scrollingmanager.ScrollingManager;
+import sprite_superclasses.Player;
 import view.View;
-import abstract_sprites.AbstractPlayer;
 import level_editor.Level;
 
 /**
@@ -42,7 +42,7 @@ public class LevelManager {
      * 
      * @param player is the player that will play the current level.
      */
-    public void startLevel(AbstractPlayer player){
+    public void startLevel(Player player){
         myLevels.get(myIndex).addSprite(player);
     }
 }

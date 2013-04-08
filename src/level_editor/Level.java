@@ -9,7 +9,7 @@ import util.Location;
 import util.Sprite;
 import viewUtil.Renderable;
 import scrollingmanager.ScrollingManager;
-import sprites.Player;
+import sprite_superclasses.Player;
 import util.PlatformerConstants;
 import view.View;
 
@@ -25,6 +25,7 @@ public class Level implements Editable, Renderable {
     private View myView;
     private Status myStatus;
     private SpriteGrid mySpriteGrid;
+    private ScrollingManager myScrollManager;
 
     public Level(int id, ScrollingManager sm){
 
@@ -40,6 +41,7 @@ public class Level implements Editable, Renderable {
         myView = view;
         frameOfReferenceSize = myView.getSize();
         frameOfActionSize = calcActionFrameSize(myView.getSize());
+        myScrollManager = sm;
     }
 
     private void initFrames() {
@@ -128,19 +130,19 @@ public class Level implements Editable, Renderable {
     }
     
     public double getRightBoundary() {
-        return (myPlayer.getX() + frameOfReferenceSize.getWidth() / 2);
+        return myScrollManager.getRightBoundary(frameOfReferenceSize, myPlayer.getCenter());
     }
     
     public double getLeftBoundary() {
-        return (myPlayer.getX() - frameOfReferenceSize.getWidth() / 2);
+        return myScrollManager.getLeftBoundary(frameOfReferenceSize, myPlayer.getCenter());
     }
     
     public double getUpperBoundary() {
-        return (myPlayer.getY() - frameOfReferenceSize.getHeight() / 2);
+        return myScrollManager.getUpperBoundary(frameOfReferenceSize, myPlayer.getCenter());
     }
     
     public double getLowerBoundary() { 
-        return (myPlayer.getY() + frameOfReferenceSize.getHeight() / 2);
+        return myScrollManager.getLowerBoundary(frameOfReferenceSize, myPlayer.getCenter());
     }
 
     public Dimension getLevelBounds() {

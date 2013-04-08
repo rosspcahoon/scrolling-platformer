@@ -6,8 +6,7 @@ import input.InputClassTarget;
 import input.InputMethodTarget;
 import input.PositionObject;
 import javax.swing.JComponent;
-import sprites.Player;
-
+import sprite_superclasses.Player;
 /**
  * Class that holds all user defined control methods. These methods can work
  * on the player used in the construciton of this.
