@@ -97,6 +97,11 @@ public class View extends JComponent {
             pen.drawImage(img, this.getWidth() - horizontal,  0 - vertical, 800, 300, null);
             pen.drawImage(img, 0 - horizontal,this.getHeight() - vertical, 800, 300, null);
             pen.drawImage(img, this.getWidth() - horizontal, this.getHeight() - vertical, 800, 300, null);
+
+        // first time needs to be special cased :(
+        if (myGame != null) {
+            myGame.paint((Graphics2D) pen);
+        }
     }
 
     /**
