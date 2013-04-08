@@ -4,6 +4,8 @@ package level_editor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import scrollingmanager.ScrollingManager;
+import sprite_superclasses.Player;
+import util.Location;
 import level_editor.commands.Command;
 import level_editor.commands.CommandLibrary;
 
@@ -26,7 +28,7 @@ public class LevelEditor implements ILevelEditor {
     private static final String DEFAULT_COMMAND_ERROR = "Incorrect Command";
     private Editable myLevel;
     private ScrollingManager myScrollingManager;
-    private LevelGrid mySpriteGrid;
+    private LEGrid mySpriteGrid;
 
     public LevelEditor () {
         myLevel = new Level(1, myScrollingManager); 
@@ -39,7 +41,7 @@ public class LevelEditor implements ILevelEditor {
     @Override
     public void processCommand (Editable m, String cmd) {
         // TODO Auto-generated method stub
-        mySpriteGrid = (LevelGrid) m;
+        mySpriteGrid = (LEGrid) m;
         processCommand(cmd);
     }
 

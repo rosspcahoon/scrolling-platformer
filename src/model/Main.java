@@ -2,6 +2,8 @@ package model;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import scrollingmanager.DefaultScrollingManager;
+import scrollingmanager.ScrollingManager;
 import util.PlatformerConstants;
 import view.View;
 
@@ -24,7 +26,10 @@ public class Main
     public static void main (String args[])
     {
         // view of user's content
-        View display = new View(PlatformerConstants.DEFAULT_WINDOW_SIZE);
+        ScrollingManager scrollManager = new DefaultScrollingManager();
+        View display = new View(PlatformerConstants.DEFAULT_WINDOW_SIZE, scrollManager);
+        scrollManager.initView(display);
+        
         // container that will work with user's OS
         JFrame frame = new JFrame(TITLE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

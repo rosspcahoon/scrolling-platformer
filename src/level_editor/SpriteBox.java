@@ -11,13 +11,13 @@ import viewUtil.Renderable;
 public class SpriteBox implements Renderable {
 
     private Sprite mySprite;
-    private LevelGrid myParent;
+    private LEGrid myParent;
     private int mySize;
     private Rectangle myBounds;
     private Set<SpriteBox> myCombinedBoxes;
     private boolean isAvailable;
 
-    public SpriteBox (LevelGrid parent, int x, int y) {
+    public SpriteBox (LEGrid parent, int x, int y) {
         myParent = parent;
         mySize = myParent.getSpriteSize();
         setBounds(x, y);

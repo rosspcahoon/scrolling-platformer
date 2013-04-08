@@ -11,7 +11,7 @@ import util.Sprite;
 import viewUtil.Renderable;
 
 
-public class LevelGrid implements Editable, Renderable{
+public class LEGrid implements Editable, Renderable{
 
     private static final int DEFAULT_SPRITE_SIZE = 25;
     private int mySpriteSize;
@@ -20,7 +20,7 @@ public class LevelGrid implements Editable, Renderable{
     private Set<SpriteBox> myPaintableBoxes;
     private ScrollingManager myScrollingManager;
 
-    public LevelGrid (int x, int y) {
+    public LEGrid (int x, int y) {
         mySpriteSize = DEFAULT_SPRITE_SIZE;
         mySize = new Dimension(x, y);
         myGrid = new SpriteBox[x][y];

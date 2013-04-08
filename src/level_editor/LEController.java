@@ -115,7 +115,7 @@ public class LEController {
      * @param id
      */
     private void initializeWorkspace (int id) {
-        Editable m = new LevelGrid(DEFAULT_SPRITE_GRID_SIZE,DEFAULT_SPRITE_GRID_SIZE);;
+        Editable m = new LEGrid(DEFAULT_SPRITE_GRID_SIZE,DEFAULT_SPRITE_GRID_SIZE);;
         WorkspaceView associatedWorkspaceView = myView.initializeWorkspaceView(id);
         myWorkspace2Tab.put(m, associatedWorkspaceView);
         myTab2Workspace.put(associatedWorkspaceView, m);
