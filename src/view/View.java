@@ -50,13 +50,13 @@ public class View extends JComponent {
     private Set<Integer> myKeys;
     // Player
     private Player myPlayer;
-    private ScrollingManager myScrollingManager;
+    private ScrollingManager myScrollManager;
 
 
     /**
      * Create a panel so that it knows its size
      */
-    public View (Dimension size) {
+    public View (Dimension size, ScrollingManager sm) {
         // set size (a bit of a pain)
         setPreferredSize(size);
         setSize(size);
@@ -64,6 +64,7 @@ public class View extends JComponent {
         setFocusable(true);
         requestFocus();
         setInputListeners();
+        myScrollManager = sm;
     }
 
     /**
@@ -77,31 +78,13 @@ public class View extends JComponent {
      */
     @Override
     public void paintComponent (Graphics pen) {
-
         // first time needs to be special cased :(
-        if (myGame != null) {
-            scrollManager(pen);
-            myGame.paint((Graphics2D) pen);
-        }
-    }
-    
-    /**
-     * Scroll Manager
-     */
-    private void scrollManager(Graphics pen) {
-        Image img = new ImageIcon(getClass().getResource("/images/forestbackground.jpg")).getImage();
-        
-
-        int horizontal = ((int) myGame.getRightBoundary() + this.getWidth()*1000) % this.getWidth();
-        int vertical = ((int) myGame.getLowerBoundary() + this.getHeight()*1000) % this.getHeight();
-
-            pen.drawImage(img, 0 - horizontal, 0 - vertical, 800, 300, null);
-            pen.drawImage(img, this.getWidth() - horizontal,  0 - vertical, 800, 300, null);
-            pen.drawImage(img, 0 - horizontal,this.getHeight() - vertical, 800, 300, null);
-            pen.drawImage(img, this.getWidth() - horizontal, this.getHeight() - vertical, 800, 300, null);
-
-        // first time needs to be special cased :(
-        if (myGame != null) {
+        if (myGame != null & myScrollManager != null) {
+            Image img = new ImageIcon(getClass().getResource("/images/forestbackground.jpg")).getImage();
+            pen.drawImage(img, myScrollManager.left(), myScrollManager.upper(), 800, 300, null);
+            pen.drawImage(img, myScrollManager.right(),  myScrollManager.upper(), 800, 300, null);
+            pen.drawImage(img, myScrollManager.left(), myScrollManager.lower(), 800, 300, null);
+            pen.drawImage(img, myScrollManager.right(), myScrollManager.lower(), 800, 300, null);
             myGame.paint((Graphics2D) pen);
         }
     }
@@ -142,7 +125,8 @@ public class View extends JComponent {
             }
         });
         // start animation
-        myGame = new Model(this, myScrollingManager);
+        myGame = new Model(this, myScrollManager);
+        myScrollManager.initGame(myGame);
         timer.start();
     }
 
