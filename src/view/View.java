@@ -20,7 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 import scrollingmanager.ScrollingManager;
-import sprites.Player;
+import sprite_superclasses.Player;
 import model.Model;
 
 

@@ -4,7 +4,7 @@ package level_editor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import scrollingmanager.ScrollingManager;
-import sprites.Player;
+import sprite_superclasses.Player;
 import util.Location;
 import level_editor.commands.Command;
 import level_editor.commands.CommandLibrary;

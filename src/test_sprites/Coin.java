@@ -3,11 +3,11 @@ package test_sprites;
 import java.awt.Dimension;
 import collision_handlers.Coin_CH;
 import collision_handlers.CollisionHandler;
+import sprite_superclasses.StaticEntity;
 import util.Location;
 import util.Pixmap;
-import abstract_sprites.AbstractStaticEntity;
 
-public class Coin extends AbstractStaticEntity {
+public class Coin extends StaticEntity {
 
     
     private Coin_CH collisionHandler = new Coin_CH();

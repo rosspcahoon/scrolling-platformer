@@ -3,11 +3,11 @@ package test_sprites;
 import java.awt.Dimension;
 import collision_handlers.CollisionHandler;
 import collision_handlers.Platform_CH;
+import sprite_superclasses.StaticEntity;
 import util.Location;
 import util.Pixmap;
-import abstract_sprites.AbstractStaticEntity;
 
-public class Platform extends AbstractStaticEntity{
+public class Platform extends StaticEntity{
 
     private Platform_CH collisionHandler = new Platform_CH();
     

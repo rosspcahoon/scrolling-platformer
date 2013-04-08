@@ -3,11 +3,11 @@ package test_sprites;
 import java.awt.Dimension;
 import collision_handlers.CollisionHandler;
 import collision_handlers.Koopa_CH;
+import sprite_superclasses.NonStaticEntity;
 import util.Location;
 import util.Pixmap;
-import abstract_sprites.AbstractNonStaticEntity;
 
-public class Koopa extends AbstractNonStaticEntity {
+public class Koopa extends NonStaticEntity {
 
     private Koopa_CH collisionHandler = new Koopa_CH();
     

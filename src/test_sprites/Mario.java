@@ -7,12 +7,11 @@ import java.util.List;
 import collision_handlers.CollisionHandler;
 import collision_handlers.Mario_CH;
 import design_patterns.State;
-import sprites.Player;
+import sprite_superclasses.Player;
 import util.Location;
 import util.Pixmap;
 import util.Vector;
 import view.View;
-import abstract_sprites.AbstractPlayer;
 
 public class Mario extends Player {
 
@@ -24,16 +23,7 @@ public class Mario extends Player {
     private Dimension mySize;
     private Pixmap myImage;
     
-    // Used for testing purposes only
-    private static final int MOVE_LEFT = KeyEvent.VK_A;
-    private static final int MOVE_RIGHT = KeyEvent.VK_D;
-    private static final int MOVE_UP = KeyEvent.VK_W;
-    private static final int MOVE_DOWN = KeyEvent.VK_S;
-    private static final int MOVE_SPEED = 10;
-    private static final Vector LEFT_VELOCITY = new Vector(LEFT_DIRECTION, MOVE_SPEED);
-    private static final Vector RIGHT_VELOCITY = new Vector(RIGHT_DIRECTION, MOVE_SPEED);
-    private static final Vector UP_VELOCITY = new Vector(UP_DIRECTION, MOVE_SPEED);
-    private static final Vector DOWN_VELOCITY = new Vector(DOWN_DIRECTION, MOVE_SPEED);
+    
     
     public Mario_CH getCollisionHandler () {
         return collisionHandler;
