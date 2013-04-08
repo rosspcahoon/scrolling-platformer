@@ -35,7 +35,6 @@ public class Mario extends AbstractPlayer {
     private static final Vector DOWN_VELOCITY = new Vector(DOWN_DIRECTION, MOVE_SPEED);
     
     public Mario_CH getCollisionHandler () {
-        System.out.println("NEVER GETTING HERE!");
         return collisionHandler;
     }
 
@@ -53,7 +52,7 @@ public class Mario extends AbstractPlayer {
     }
 
     public void print() {
-        System.out.println("Koopa");
+        System.out.println("Mario");
     }
     
     @Override

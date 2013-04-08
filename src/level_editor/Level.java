@@ -73,7 +73,6 @@ public class Level extends WorkspaceModel implements Editable{
 
     public void update(double elapsedTime, Dimension bounds, View view) {
         if(myPlayer != null) {
-            //            System.out.println("Player Location: " + myPlayer.getCenter());
             updateFrames(view);
             myPlayer.update(elapsedTime, bounds);
             for(Sprite s: myFrameOfActionSprites) {
@@ -149,7 +148,6 @@ public class Level extends WorkspaceModel implements Editable{
         return mySize;
     }
 
-
     //Methods from Editable Interface. Methods called by LevelEditor.
 
     @Override
@@ -161,18 +159,15 @@ public class Level extends WorkspaceModel implements Editable{
     @Override
     public void addNewSprite (Sprite s) {
         // TODO Auto-generated method stub
-
     }
 
     @Override
     public void deleteSprite (Location deleteAtLocation) {
         // TODO Auto-generated method stub
-
     }
 
     @Override
     public void setErrorMessage (String errorMessage) {
         myStatus.setErrorMessage(errorMessage);
-
     }
 }

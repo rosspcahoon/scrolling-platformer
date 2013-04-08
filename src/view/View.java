@@ -75,10 +75,10 @@ public class View extends JComponent {
      */
     @Override
     public void paintComponent (Graphics pen) {
-        scrollManager(pen);
-        
+
         // first time needs to be special cased :(
         if (myGame != null) {
+            scrollManager(pen);
             myGame.paint((Graphics2D) pen);
         }
     }

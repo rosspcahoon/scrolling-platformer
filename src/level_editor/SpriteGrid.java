@@ -47,10 +47,10 @@ public class SpriteGrid implements Renderable {
             currentBox.addSprite(spr);
             myPaintableBoxes.add(currentBox);
             combineBoxes(currentBox, currentBox, spr.getWidth(), spr.getHeight());
-            System.out.println("added Sprite "+currentBox.getX()+" "+currentBox.getY());
+//            System.out.println("added Sprite "+currentBox.getX()+" "+currentBox.getY());
         }
         else{
-            System.out.println("unavailable "+currentBox.getX()+" "+currentBox.getY());
+//            System.out.println("unavailable "+currentBox.getX()+" "+currentBox.getY());
         }
     }
 
@@ -58,7 +58,7 @@ public class SpriteGrid implements Renderable {
         SpriteBox currentBox = nearestBox(x, y);
         currentBox.deleteSprite();
         myPaintableBoxes.remove(currentBox);
-        System.out.println("deleted Sprite");
+//        System.out.println("deleted Sprite");
     }
 
     private boolean checkAvailable (SpriteBox current, double width, double height) {

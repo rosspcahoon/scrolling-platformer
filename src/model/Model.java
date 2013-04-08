@@ -83,7 +83,6 @@ public class Model {
 
         for (Sprite sprite : spriteList) {
             myCurrLevel.addSprite(sprite);
-            System.out.println(sprite.toString());
         }
 
 
