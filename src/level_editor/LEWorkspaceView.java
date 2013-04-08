@@ -1,6 +1,8 @@
 package level_editor;
 
 import java.awt.Container;
+import util.Editable;
+import util.IView;
 import util.IWindow;
 import viewUtil.EasyGridFactory;
 import viewUtil.Renderable;
@@ -11,21 +13,21 @@ import viewUtil.WorkspaceView;
  * @author Dagbedji Fagnisse
  *
  */
-public class LETab extends WorkspaceView implements ILEView, ILevelEditor{
+public class LEWorkspaceView extends WorkspaceView {
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
     private Renderable myRenderable;
-    private LevelGridView myLevelView;
-    private EditorView myEditorView;
+    private LEGridView myLevelView;
+    private LEToolsView myEditorView;
 
-    public LETab (Container host) {
+    public LEWorkspaceView (IView host) {
         super(host);
         // TODO Auto-generated constructor stub
     }
 
-    public LETab (int id, Container host) {
+    public LEWorkspaceView (int id, IView host) {
         // TODO Auto-generated constructor stub
         super(id, host);
     }
@@ -41,8 +43,8 @@ public class LETab extends WorkspaceView implements ILEView, ILevelEditor{
     @Override
     protected void initializeVariables () {
         // TODO Auto-generated method stub
-        myLevelView = new LevelGridView(this);
-        myEditorView = new EditorView(this);
+        myLevelView = new LEGridView(this);
+        myEditorView = new LEToolsView(this);
     }
 
     @Override

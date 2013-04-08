@@ -1,13 +1,12 @@
 package test_sprites;
 
 import java.awt.Dimension;
-import collision_handlers.CollisionHandler;
 import collision_handlers.Turtle_CH;
+import sprite_superclasses.NonStaticEntity;
 import util.Location;
 import util.Pixmap;
-import abstract_sprites.AbstractNonStaticEntity;
 
-public class Turtle extends AbstractNonStaticEntity {
+public class Turtle extends NonStaticEntity {
 
     
     private Turtle_CH collisionHandler = new Turtle_CH();

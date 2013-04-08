@@ -5,6 +5,7 @@ import test_sprites.Koopa;
 import test_sprites.Mario;
 import test_sprites.Platform;
 import test_sprites.Turtle;
+import test_sprites.Type;
 import util.Sprite;
 import design_patterns.Visitor;
 
@@ -41,33 +42,7 @@ public class Turtle_CH extends CollisionHandler implements Visitor {
     }
 
     public void handleTurtleCollision (Sprite obj2) {
-//        System.out.println(obj2.getType());
-        
-        switch (obj2.getType()) {
-            case COIN:
-                Coin object1 = (Coin) obj2;
-                this.visit(object1);
-                break;
-                
-            case KOOPA:
-                Koopa object2 = (Koopa) obj2;
-                this.visit(object2);
-                break;
-                
-            case MARIO:
-                Mario object3 = (Mario) obj2;
-                this.visit(object3);
-                break;
-                
-            case PLATFORM:
-                Platform object4  = (Platform) obj2;
-                this.visit(object4);
-                break;
-                
-            case TURTLE:
-                Turtle object5 = (Turtle) obj2;
-                this.visit(object5);
-                break;
-        }
+        handleCollision(Type.TURTLE, this, obj2);
+
     }
 }

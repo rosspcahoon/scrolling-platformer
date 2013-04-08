@@ -16,6 +16,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JTabbedPane;
 import level_editor.LEController;
+import util.IView;
 import util.IWindow;
 import viewUtil.Renderable;
 
@@ -25,7 +26,7 @@ import viewUtil.Renderable;
  *
  */
 @SuppressWarnings("serial")
-public abstract class Window extends JFrame implements IWindow {
+public abstract class Window extends JFrame implements IWindow, IView {
 
     private static ResourceBundle ourResources;
     private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
@@ -123,8 +124,8 @@ public abstract class Window extends JFrame implements IWindow {
      * @param tabView The Tabview that is requesting the string to be processed
      * @param s The string to be processed
      */
-    public int processCommand (WorkspaceView tabView, String s) {
-        return myController.processCommand(tabView, s);
+    public void processCommand (WorkspaceView tabView, String s) {
+        myController.processCommand(tabView, s);
     }
     
     /**
@@ -132,11 +133,11 @@ public abstract class Window extends JFrame implements IWindow {
      * Uses the active tab
      * @param s The string to be processed
      */
-    public int processCommand (String s) {
-        return processCommand(getActiveTab(), s);
+    public void processCommand (String s) {
+        processCommand(getActiveTab(), s);
     }
     
-    private WorkspaceView getActiveTab() {
+    protected WorkspaceView getActiveTab() {
         return (WorkspaceView) myTabbedPane.getSelectedComponent();
     }
 

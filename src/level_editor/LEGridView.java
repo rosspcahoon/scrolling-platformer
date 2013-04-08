@@ -5,11 +5,12 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import util.IView;
 import viewUtil.ViewConstants;
 import viewUtil.Renderable;
-import viewUtil.WindowView;
+import viewUtil.WindowComponent;
 
-public class LevelGridView extends WindowView implements ILEView {
+public class LEGridView extends WindowComponent{
     /**
      * 
      */
@@ -17,7 +18,7 @@ public class LevelGridView extends WindowView implements ILEView {
     private Dimension mySize;
     private Renderable myLevel;
 
-    public LevelGridView (Container parent) {
+    public LEGridView (IView parent) {
         super(parent);
         // TODO Auto-generated constructor stub
     }

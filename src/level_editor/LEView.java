@@ -22,56 +22,8 @@ public class LEView extends Window {
 
     @Override
     public WorkspaceView initializeWorkspaceView (int id) {
-        return new LETab(id, this);
+        return new LEWorkspaceView(id, this);
     }
-
-    /**
-     * TODO: refactor the part below as they are specific to SLogo and not to the window
-     * maybe it would make sense to have them being required by setting the window to
-     * implement an interface, and ensuring that the implementation is delegated to 
-     * some component of the window.
-     */
-    
-    /**
-     * Set the turtle shape
-     */
-//    public void setTurtleShape () {
-//        int response = myChooser.showOpenDialog(null);
-//        if (response == JFileChooser.APPROVE_OPTION) {
-//            String imgURL = myChooser.getSelectedFile().getAbsolutePath();
-//            WorkspaceView temp = (WorkspaceView) myTabbedPane.getSelectedComponent();
-//            if (temp != null) {
-//                return;
-//            }
-//            int last = registerTurtleShape(imgURL);
-//            setTurtleShape(last);
-//        }
-//    }
-//
-//    private void setTurtleShape (int i) {
-//        WorkspaceView temp = (WorkspaceView) myTabbedPane.getSelectedComponent();
-//        processCommand(temp, "setshape " + i);
-//    }
-//
-//    private int registerTurtleShape (String imgURL) {
-//        return processCommand(
-//                     getLiteral("COMMAND_NAME_REGISTER_SHAPE") + " " + imgURL);
-//    }
-//    
-//    /**
-//     * Change the color of the pen
-//     */
-//    public void changePenColor() {
-//        Color result = JColorChooser.showDialog(this, getLiteral("ChangePenColor"), 
-//                                                getCurrentPenColor());
-//        int pos = processCommand(getLiteral("COMMAND_NAME_LAST_PEN_COLOR_INDEX"));
-//        processCommand(getLiteral("COMMAND_NAME_SET_PALETTE") +
-//                                 " " + pos + " " 
-//                                 + result.getRed() + " "
-//                                 + result.getGreen() + " "
-//                                 + result.getBlue());
-//        processCommand(getLiteral("COMMAND_NAME_SET_PEN_COLOR") + " " + pos);
-//    }
 
     @Override
     protected void setMenu () {
@@ -82,6 +34,12 @@ public class LEView extends Window {
     public void showWorkspace (WorkspaceView associatedWorkspaceView, Renderable r) {
         // TODO Auto-generated method stub
         super.addTab(associatedWorkspaceView, r);
+    }
+
+    @Override
+    public void render (Renderable r) {
+        getActiveTab().setRenderable(r);
+        
     }
 
 }
