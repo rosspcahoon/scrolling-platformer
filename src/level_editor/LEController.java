@@ -30,8 +30,7 @@ public class LEController {
     private Map<Editable, WorkspaceView> myWorkspace2Tab;
     private Map<WorkspaceView, Editable> myTab2Workspace;
     private static final int DEFAULT_SPRITE_GRID_SIZE = 10;
-    private ScrollingManager myScrollingManager;
-
+    
     /**
      * Constructor
      */

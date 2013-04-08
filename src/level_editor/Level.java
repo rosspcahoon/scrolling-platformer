@@ -32,6 +32,10 @@ public class Level implements Editable, Renderable {
         mySize = PlatformerConstants.DEFAULT_LEVEL_SIZE;
         initFrames();
     }
+    
+    public Level(int id){
+        //this(id,new DefaultScrollingManager());
+    }
 
     public Level(int id, ScrollingManager sm, View view){
         //MIGHT WANT TO INITIALIZE THIS WITH A PLAYER AS WELL
@@ -166,10 +170,5 @@ public class Level implements Editable, Renderable {
     @Override
     public void deleteSprite (Location deleteAtLocation) {
         // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void setErrorMessage (String errorMessage) {
-        myStatus.setErrorMessage(errorMessage);
     }
 }

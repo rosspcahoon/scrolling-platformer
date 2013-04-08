@@ -11,6 +11,7 @@ import util.Sprite;
 import viewUtil.Renderable;
 
 
+
 public class LEGrid implements Editable, Renderable{
 
     private static final int DEFAULT_SPRITE_SIZE = 25;
@@ -50,8 +51,9 @@ public class LEGrid implements Editable, Renderable{
         if (checkAvailable(currentBox, spr.getWidth(), spr.getHeight())) {
             currentBox.addSprite(spr);
             myPaintableBoxes.add(currentBox);
-            combineBoxes(currentBox, currentBox, spr.getWidth(), spr.getHeight());}
-        else{
+            combineBoxes(currentBox, currentBox, spr.getWidth(), spr.getHeight());
+        }
+        else {
             // TODO send Unavailable feedback
         }
     }
@@ -61,10 +63,10 @@ public class LEGrid implements Editable, Renderable{
         currentBox.deleteSprite();
         myPaintableBoxes.remove(currentBox);
     }
-    
-    public Editable createLevel(int id){
-        Editable lev = new Level(id, myScrollingManager);
-        for(SpriteBox box:myPaintableBoxes){
+
+    public Level createLevel (int id) {
+        Level lev = new Level(id);
+        for (SpriteBox box : myPaintableBoxes) {
             lev.addNewSprite(box.getSprite());
         }
         return lev;
@@ -114,26 +116,17 @@ public class LEGrid implements Editable, Renderable{
 
     @Override
     public void changeBackground () {
-        // TODO Auto-generated method stub
         
     }
 
     @Override
     public void addNewSprite (Sprite s) {
-        // TODO Auto-generated method stub
-        
+        addSprite(s,(int)s.getLeft(),(int)s.getRight());
     }
 
     @Override
     public void deleteSprite (Location deleteAtLocation) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void setErrorMessage (String errorMessage) {
-        // TODO Auto-generated method stub
-        
+        deleteSprite((int) deleteAtLocation.getX(), (int) deleteAtLocation.getY());
     }
 
 }
