@@ -28,6 +28,7 @@ public class LevelEditor implements IModel {
     private static final String PARAM_COMMAND_ERROR = "Incorrect Parameters";
     private static final String DEFAULT_COMMAND_ERROR = "Incorrect Command";
     private Editable myLevel;
+    private SpriteGrid mySpriteGrid;
 
     public LevelEditor () {
         myLevel = new Level(1); 
@@ -40,7 +41,7 @@ public class LevelEditor implements IModel {
     @Override
     public int processCommand (WorkspaceModel m, String cmd) {
         // TODO Auto-generated method stub
-        myLevel = (Level) m;
+        mySpriteGrid = (SpriteGrid) m;
         processCommand(cmd);
         return 0;
     }
@@ -52,7 +53,7 @@ public class LevelEditor implements IModel {
     
     @Command
     public void deleteSprite (int x, int y) {
-        myLevel.deleteSprite(new Location(x,y));
+        mySpriteGrid.deleteSprite(x,y);
     }
 
     @Command
@@ -77,16 +78,16 @@ public class LevelEditor implements IModel {
             m.invoke(this, params);
         }
         catch (NullPointerException e) {
-            myLevel.setErrorMessage(NO_METHOD_COMMAND_ERROR);
+          //TODO
         }
         catch (IllegalAccessException e) {
-            myLevel.setErrorMessage(DEFAULT_COMMAND_ERROR);
+          //TODO
         }
         catch (IllegalArgumentException e) {
-            myLevel.setErrorMessage(PARAM_COMMAND_ERROR);
+          //TODO
         }
         catch (InvocationTargetException e) {
-            myLevel.setErrorMessage(DEFAULT_COMMAND_ERROR);
+            //TODO
         }
     }
 

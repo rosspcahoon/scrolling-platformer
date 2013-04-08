@@ -5,10 +5,10 @@ import java.awt.Graphics2D;
 import java.util.HashSet;
 import java.util.Set;
 import util.Sprite;
-import viewUtil.Renderable;
+import util.WorkspaceModel;
 
 
-public class SpriteGrid implements Renderable {
+public class SpriteGrid extends WorkspaceModel{
 
     private static final int DEFAULT_SPRITE_SIZE = 25;
     private int mySpriteSize;
@@ -59,6 +59,14 @@ public class SpriteGrid implements Renderable {
         currentBox.deleteSprite();
         myPaintableBoxes.remove(currentBox);
         System.out.println("deleted Sprite");
+    }
+    
+    public Editable createLevel(int id){
+        Editable lev = new Level(id);
+        for(SpriteBox box:myPaintableBoxes){
+            lev.addNewSprite(box.getSprite());
+        }
+        return lev;
     }
 
     private boolean checkAvailable (SpriteBox current, double width, double height) {
