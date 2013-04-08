@@ -46,11 +46,9 @@ public class SpriteGrid extends WorkspaceModel{
         if (checkAvailable(currentBox, spr.getWidth(), spr.getHeight())) {
             currentBox.addSprite(spr);
             myPaintableBoxes.add(currentBox);
-            combineBoxes(currentBox, currentBox, spr.getWidth(), spr.getHeight());
-            System.out.println("added Sprite "+currentBox.getX()+" "+currentBox.getY());
-        }
+            combineBoxes(currentBox, currentBox, spr.getWidth(), spr.getHeight());}
         else{
-            System.out.println("unavailable "+currentBox.getX()+" "+currentBox.getY());
+            // TODO send Unavailable feedback
         }
     }
 
@@ -58,7 +56,6 @@ public class SpriteGrid extends WorkspaceModel{
         SpriteBox currentBox = nearestBox(x, y);
         currentBox.deleteSprite();
         myPaintableBoxes.remove(currentBox);
-        System.out.println("deleted Sprite");
     }
     
     public Editable createLevel(int id){

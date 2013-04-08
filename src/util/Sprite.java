@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
+import collision_handlers.CollisionHandler;
+import test_sprites.Type;
 
 
 /**
@@ -19,9 +21,9 @@ import java.awt.geom.Point2D;
 public abstract class Sprite {
     // canonical directions for a collision
     public static final int RIGHT_DIRECTION = 0;
-    public static final int UP_DIRECTION =  90;
+    public static final int UP_DIRECTION =  270;
     public static final int LEFT_DIRECTION = 180;
-    public static final int DOWN_DIRECTION = 270;
+    public static final int DOWN_DIRECTION = 90;
 
     // state
     private Location myCenter;
@@ -35,10 +37,6 @@ public abstract class Sprite {
     private Pixmap myOriginalView;
     // cached for efficiency
     private Rectangle myBounds;
-    
-
-    
-    
     
     /**
      * Create a shape at the given position, with the given size.
@@ -86,6 +84,13 @@ public abstract class Sprite {
     public void setCenter (double x, double y) {
         myCenter.setLocation(x, y);
         resetBounds();
+    }
+    
+    /**
+     * Returns myCenter
+     */
+    public Location getCenter() {
+        return myCenter;
     }
 
     /**
@@ -226,6 +231,33 @@ public abstract class Sprite {
     public void paint (Graphics2D pen)
     {
         myView.paint(pen, myCenter, mySize);
+    }
+    
+    /**
+     * Display this shape translated on the screen, used for all Sprites besides Player
+     */
+    public void paint (Graphics2D pen, Location loc, Location origLoc) {
+        myView.paint(pen, translate(loc, origLoc), mySize);
+        
+    }
+    
+    /**
+     * The translates the the Location with respect to the Location given.
+     * @param loc the Location to translate in relation to
+     * @return the translated Location
+     */
+    
+    private Location translate(Location loc, Location origLoc) {
+        Location temp =  new Location(myCenter.getX()-(loc.getX()-origLoc.getX()), myCenter.getY() - (loc.getY() - origLoc.getY()));        
+        return temp;
+    }
+    
+    public Type getType() {
+        return null;
+    }
+    
+    public CollisionHandler getCollisionHandler() {
+        return null;
     }
 
     /**

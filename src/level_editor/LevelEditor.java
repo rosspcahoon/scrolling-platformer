@@ -1,11 +1,8 @@
 package level_editor;
 
 
-import java.awt.Dimension;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import sprites.Player;
-import util.Location;
 import level_editor.commands.Command;
 import level_editor.commands.CommandLibrary;
 
@@ -18,7 +15,6 @@ import level_editor.commands.CommandLibrary;
  *
  */
 import util.IModel;
-import util.Pixmap;
 import util.WorkspaceModel;
 
 public class LevelEditor implements IModel {
@@ -78,16 +74,16 @@ public class LevelEditor implements IModel {
             m.invoke(this, params);
         }
         catch (NullPointerException e) {
-          //TODO
+          //TODO NO_METHOD_COMMAND_ERROR = "Command does not exist";
         }
         catch (IllegalAccessException e) {
-          //TODO
+          //TODO DEFAULT_COMMAND_ERROR = "Incorrect Command";
         }
         catch (IllegalArgumentException e) {
-          //TODO
+          //TODO PARAM_COMMAND_ERROR = "Incorrect Parameters";
         }
         catch (InvocationTargetException e) {
-            //TODO
+            //TODO DEFAULT_COMMAND_ERROR = "Incorrect Command";
         }
     }
 
@@ -105,22 +101,4 @@ public class LevelEditor implements IModel {
         return params;
     }
 
-    //For Preliminary Testing only. Will be deleted.
-    public static void main (String args[]) {
-        LevelEditor l = new LevelEditor();
-        l.processCommand("addSprite 1 400 500");
-        SpriteGrid sg = new SpriteGrid(4,4);
-        sg.addSprite(new Player(new Pixmap("ball.gif"), new Location(), new Dimension(100,100)), 10, 10);
-        for(int i = 0; i < 4;i++){
-            for(int j = 0; j < 4;j++){
-                sg.addSprite(new Player(new Pixmap("ball.gif"), new Location(), new Dimension(25,25)), i*25, j*25);
-            }
-        }
-        sg.deleteSprite(50, 45);
-        for(int i = 0; i < 4;i++){
-            for(int j = 0; j < 4;j++){
-                sg.addSprite(new Player(new Pixmap("ball.gif"), new Location(), new Dimension(25,25)), i*25, j*25);
-            }
-        }
-    }
 }

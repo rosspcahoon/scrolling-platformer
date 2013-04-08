@@ -1,66 +1,174 @@
 package level_editor;
 
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 import util.Location;
 import util.Sprite;
 import util.WorkspaceModel;
+import sprites.Player;
+import util.PlatformerConstants;
+import view.View;
 
 public class Level extends WorkspaceModel implements Editable{
 
-
+    private Dimension mySize;
+    private Dimension frameOfReferenceSize;
+    private Dimension frameOfActionSize;
+    private Player myPlayer;
     private List<Sprite> mySprites;
+    private List<Sprite> myFrameOfActionSprites;
+    private List<Sprite> myFrameOfReferenceSprites;
+    private View myView;
     private Status myStatus;
     private SpriteGrid mySpriteGrid;
-    
+
     public Level(int id){
-        mySprites = new ArrayList<Sprite>();
-        myStatus = new Status();
-    }   
-    
+
+        //MIGHT WANT TO INITIALIZE THIS WITH A PLAYER AS WELL
+        mySize = PlatformerConstants.DEFAULT_LEVEL_SIZE;
+        initFrames();
+    }
+
+    public Level(int id, View view){
+        //MIGHT WANT TO INITIALIZE THIS WITH A PLAYER AS WELL
+        mySize = PlatformerConstants.DEFAULT_LEVEL_SIZE;
+        initFrames();
+        myView = view;
+        frameOfReferenceSize = myView.getSize();
+        frameOfActionSize = calcActionFrameSize(myView.getSize());
+    }
+
+    private void initFrames() {
+        myFrameOfActionSprites = new ArrayList<Sprite>();
+        myFrameOfReferenceSprites = new ArrayList<Sprite>();
+        mySprites = new ArrayList<Sprite>();       
+    }
+
+    public void setSize(Dimension size) {
+        mySize = size;
+    }
+    /**
+     * Adds a sprite to the level. If the Sprite is a player,
+     *  it will set it to the current player.
+     * @param s the Sprite to be added
+     */
+
     public void addSprite(Sprite s){
-        mySprites.add(s);
-    } 
-    
-//Methods from Renderable Interface. To be called by View components.  
-    
+
+        if(s.getClass().getName().equals("sprites.Player")) {
+            myPlayer = (Player) s;
+        }
+        else {
+            mySprites.add(s);
+        }
+    }
+
+    //Methods from Renderable Interface. To be called by View components.  
+
     @Override
     public Status getState () {
         return myStatus;
     }
 
-    @Override
-    public void paint (Graphics2D pen) {
-        // TODO Auto-generated method stub
-        
+    public void update(double elapsedTime, Dimension bounds, View view) {
+        if(myPlayer != null) {
+            updateFrames(view);
+            myPlayer.update(elapsedTime, bounds);
+            for(Sprite s: myFrameOfActionSprites) {
+                s.update(elapsedTime, bounds);
+            }
+        }
     }
 
-    
-//Methods from Editable Interface. Methods called by LevelEditor.
-    
+    @Override
+    public void paint (Graphics2D pen) {
+        if(myPlayer != null) {
+            for(Sprite s: myFrameOfReferenceSprites) {
+                s.paint(pen,myPlayer.getCenter(), myPlayer.getOriginalCenter());
+            }
+            myPlayer.paint(pen);
+        }
+    }
+
+    private void updateFrames(View view) {
+        myFrameOfActionSprites.clear();
+        myFrameOfReferenceSprites.clear();
+        frameOfReferenceSize = view.getSize();
+        frameOfActionSize = calcActionFrameSize(view.getSize());
+        if(mySprites.size() > 0) {
+            for(Sprite s: mySprites) {
+                if(checkRange(s, frameOfReferenceSize)) {
+                    myFrameOfReferenceSprites.add(s);
+                    myFrameOfActionSprites.add(s);
+                }
+                if(!myFrameOfActionSprites.contains(s) & checkRange(s, frameOfActionSize)) {
+                    myFrameOfActionSprites.add(s);
+                }
+            }
+        }
+
+    }
+
+    private boolean checkRange(Sprite sprite, Dimension frame) {
+        //This is pretty hacky, I am trying to think of a more elegant way
+        if(myPlayer == null ||
+                myPlayer.getLeftBoundary(frame) > sprite.getX()
+                || myPlayer.getRightBoundary(frame) < sprite.getX()
+                || myPlayer.getLowerBoundary(frame) < sprite.getY()
+                || myPlayer.getUpperBoundary(frame) > sprite.getY()) {
+            return false;
+        }
+        return true;
+    }
+
+    private Dimension calcActionFrameSize(Dimension size) {
+        Dimension temp = new Dimension((int) size.getWidth() + 100, (int) size.getHeight() + 100);
+        return temp;
+    }
+
+    public double getRightBoundary() {
+        return myPlayer.getRightBoundary(frameOfReferenceSize);
+    }
+
+
+    public double getLeftBoundary() {
+        return myPlayer.getLeftBoundary(frameOfReferenceSize);
+    }
+
+    public double getUpperBoundary() {
+        return myPlayer.getUpperBoundary(frameOfReferenceSize);
+    }
+
+    public double getLowerBoundary() {
+        return myPlayer.getLowerBoundary(frameOfReferenceSize);
+    }
+
+    public Dimension getLevelBounds() {
+        return mySize;
+    }
+
+    //Methods from Editable Interface. Methods called by LevelEditor.
+
     @Override
     public void changeBackground () { //params need to be added
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void addNewSprite (Sprite s) {
         // TODO Auto-generated method stub
-        
     }
 
     @Override
     public void deleteSprite (Location deleteAtLocation) {
         // TODO Auto-generated method stub
-        
     }
 
     @Override
     public void setErrorMessage (String errorMessage) {
         myStatus.setErrorMessage(errorMessage);
-        
     }
-
 }
